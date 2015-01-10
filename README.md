@@ -1,5 +1,6 @@
 # Cake.Slack
 Cake AddIn that extends Cake with Slack messaging features
+[![Build status](https://ci.appveyor.com/api/projects/status/1tbi1x5b3i7wktv6?svg=true)](https://ci.appveyor.com/project/WCOMAB/cake-slack)
 
 ## Usage
 
