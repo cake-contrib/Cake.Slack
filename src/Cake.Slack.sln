@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Slack", "Cake.Slack\Cake.Slack.csproj", "{501A58C8-962C-4140-A4A6-34B7AA22B188}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{501A58C8-962C-4140-A4A6-34B7AA22B188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501A58C8-962C-4140-A4A6-34B7AA22B188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501A58C8-962C-4140-A4A6-34B7AA22B188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501A58C8-962C-4140-A4A6-34B7AA22B188}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
