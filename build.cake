@@ -1,4 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////
+﻿///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,8 @@ var configuration   = Argument<string>("configuration", "Release");
 
 var solutions       = GetFiles("./**/*.sln");
 var solutionDirs    = solutions.Select(solution => solution.GetDirectory());
-
+var version         = "1.0.0.0";
+var semVersion      = "1.0.0.0";
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
@@ -55,9 +56,27 @@ Task("Restore")
     }
 });
 
+Task("SolutionInfo")
+	.IsDependentOn("Clean")
+	.IsDependentOn("Restore")
+	.Does(() =>
+{
+	var file = "./src/SolutionInfo.cs";
+	CreateAssemblyInfo(file, new AssemblyInfoSettings {
+		Product = "Cake.Slack",
+                Company = "WCOM AB",
+		Version = version,
+		FileVersion = version,
+		InformationalVersion = semVersion,
+		Copyright = "Copyright © WCOM AB 2015",
+		CLSCompliant = true
+	});
+});
+
 Task("Build")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
+    .IsDependentOn("SolutionInfo")
     .Does(() =>
 {
     // Build all solutions.
