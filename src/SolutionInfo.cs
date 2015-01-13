@@ -8,8 +8,8 @@ using System;
 
 [assembly: AssemblyCompany("WCOM AB")]
 [assembly: AssemblyProduct("Cake.Slack")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.0.1")]
+[assembly: AssemblyFileVersion("0.0.1")]
+[assembly: AssemblyInformationalVersion("0.0.1")]
 [assembly: AssemblyCopyright("Copyright © WCOM AB 2015")]
 [assembly: CLSCompliant(true)]

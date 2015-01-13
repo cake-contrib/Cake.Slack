@@ -9,10 +9,27 @@ var configuration   = Argument<string>("configuration", "Release");
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
+var isLocalBuild    = !AppVeyor.IsRunningOnAppVeyor;
 var solutions       = GetFiles("./**/*.sln");
 var solutionDirs    = solutions.Select(solution => solution.GetDirectory());
-var version         = "1.0.0.0";
-var semVersion      = "1.0.0.0";
+var releaseNotes    = ParseReleaseNotes("./ReleaseNotes.md");
+var version         = releaseNotes.Version.ToString();
+var semVersion      = isLocalBuild ? version : (version + string.Concat("-build-", AppVeyor.Environment.Build.Number));
+var assemblyInfo    = new AssemblyInfoSettings {
+                            Product                 = "Cake.Slack",
+                            Company                 = "WCOM AB",
+                            Version                 = version,
+                            FileVersion             = version,
+                            InformationalVersion    = semVersion,
+                            Copyright               = string.Format("Copyright © WCOM AB {0}", DateTime.Now.Year),
+                            CLSCompliant            = true
+                        };
+
+///////////////////////////////////////////////////////////////////////////////
+// Output some information about the current build.
+///////////////////////////////////////////////////////////////////////////////
+Information("Building version {0} of {1} ({2}).", version, assemblyInfo.Product, semVersion);
+
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
@@ -57,20 +74,12 @@ Task("Restore")
 });
 
 Task("SolutionInfo")
-	.IsDependentOn("Clean")
-	.IsDependentOn("Restore")
-	.Does(() =>
+    .IsDependentOn("Clean")
+    .IsDependentOn("Restore")
+    .Does(() =>
 {
-	var file = "./src/SolutionInfo.cs";
-	CreateAssemblyInfo(file, new AssemblyInfoSettings {
-		Product = "Cake.Slack",
-                Company = "WCOM AB",
-		Version = version,
-		FileVersion = version,
-		InformationalVersion = semVersion,
-		Copyright = "Copyright © WCOM AB 2015",
-		CLSCompliant = true
-	});
+    var file = "./src/SolutionInfo.cs";
+    CreateAssemblyInfo(file, assemblyInfo);
 });
 
 Task("Build")
