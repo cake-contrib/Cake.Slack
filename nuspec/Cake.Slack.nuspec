@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id></id>
+    <version>0.0.0</version>
+    <authors></authors>
+    <owners></owners>
+    <description></description>
+    <summary></summary>
+    <licenseUrl></licenseUrl>
+    <projectUrl></projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright></copyright>
+    <releaseNotes></releaseNotes>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="Cake.exe" />
+    <file src="Cake.Core.dll" />
+    <file src="Cake.Core.xml" />
+    <file src="Cake.Common.dll" />
+    <file src="Cake.Common.xml" />
+    <file src="NuGet.Core.dll" />
+    <file src="Autofac.dll" />
+    <file src="LICENSE" />
+  </files>
+</package>

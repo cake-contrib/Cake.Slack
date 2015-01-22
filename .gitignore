@@ -182,6 +182,8 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 
+#Cake Nuget dir
+[Nn]uget/
 
 #Cake (generated)
-[Tt]ools
+[Tt]ools/

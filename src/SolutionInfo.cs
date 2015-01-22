@@ -6,6 +6,8 @@
 using System.Reflection;
 using System;
 
+[assembly: AssemblyTitle("Cake.Slack")]
+[assembly: AssemblyDescription("Cake Slack AddIn")]
 [assembly: AssemblyCompany("WCOM AB")]
 [assembly: AssemblyProduct("Cake.Slack")]
 [assembly: AssemblyVersion("0.0.1")]
