@@ -1,4 +1,5 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+﻿#addin "Cake.Slack"
+///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -8,7 +9,8 @@ var configuration   = Argument<string>("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
-
+var slackToken          = EnvironmentVariable("SLACK_TOKEN");
+var slackChannel        = "#cake";
 var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var solutions           = GetFiles("./**/*.sln");
@@ -54,7 +56,13 @@ var nuGetPackSettings   = new NuGetPackSettings {
 ///////////////////////////////////////////////////////////////////////////////
 // Output some information about the current build.
 ///////////////////////////////////////////////////////////////////////////////
-Information("Building version {0} of {1} ({2}).", version, assemblyInfo.Product, semVersion);
+var buildStartMessage = string.Format("Building version {0} of {1} ({2}).", version, assemblyInfo.Product, semVersion);
+Information(buildStartMessage);
+SlackChatPostMessage(
+            token:slackToken,
+            channel:slackChannel,
+            text:buildStartMessage
+    );
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN

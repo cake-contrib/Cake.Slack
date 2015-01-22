@@ -5,7 +5,7 @@ Cake AddIn that extends Cake with Slack messaging features
 ## Usage
 
 ```csharp
-#r "Cake.Slack.dll"
+#addin "Cake.Slack"
 var slackToken = EnvironmentVariable("SLACK_TOKEN");
 var slackChannel = "#cake";
 var postMessageResult = SlackChatPostMessage(
