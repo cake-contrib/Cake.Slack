@@ -9,7 +9,7 @@ var configuration   = Argument<string>("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
-var slackToken          = EnvironmentVariable("SLACK_TOKEN");
+var slackHookUri        = EnvironmentVariable("slackhookuri");
 var slackChannel        = "#cake";
 var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
@@ -58,10 +58,10 @@ var nuGetPackSettings   = new NuGetPackSettings {
 ///////////////////////////////////////////////////////////////////////////////
 var buildStartMessage = string.Format("Building version {0} of {1} ({2}).", version, assemblyInfo.Product, semVersion);
 Information(buildStartMessage);
-SlackChatPostMessage(
-            token:slackToken,
+Slack.Chat.PostMessage(
             channel:slackChannel,
-            text:buildStartMessage
+            text:buildStartMessage,
+            messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackHookUri }
     );
 
 ///////////////////////////////////////////////////////////////////////////////
