@@ -14,7 +14,7 @@ var slackChannel        = "#cake";
 var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var solutions           = GetFiles("./**/*.sln");
-var solutionDirs        = solutions.Select(solution => solution.GetDirectory());
+var solutionPaths       = solutions.Select(solution => solution.GetDirectory());
 var releaseNotes        = ParseReleaseNotes("./ReleaseNotes.md");
 var version             = releaseNotes.Version.ToString();
 var binDir              = "./src/Cake.Slack/bin/" + configuration;
@@ -38,19 +38,19 @@ var nuGetPackSettings   = new NuGetPackSettings {
                                 Authors                 = new[] {assemblyInfo.Company},
                                 Owners                  = new[] {assemblyInfo.Company},
                                 Description             = assemblyInfo.Description,
-                                Summary                 = "Cake AddIn that extends Cake with Slack messaging features", 
+                                Summary                 = "Cake AddIn that extends Cake with Slack messaging features",
                                 ProjectUrl              = new Uri("https://github.com/WCOMAB/Cake.Slack/"),
                                 IconUrl                 = new Uri("http://cdn.rawgit.com/WCOMAB/nugetpackages/master/Chocolatey/icons/wcom.png"),
                                 LicenseUrl              = new Uri("https://github.com/WCOMAB/Cake.Slack/blob/master/LICENSE"),
                                 Copyright               = assemblyInfo.Copyright,
                                 ReleaseNotes            = releaseNotes.Notes.ToArray(),
                                 Tags                    = new [] {"Cake", "Script", "Build", "Slack"},
-                                RequireLicenseAcceptance= false,        
+                                RequireLicenseAcceptance= false,
                                 Symbols                 = false,
                                 NoPackageAnalysis       = true,
                                 Files                   = new [] {new NuSpecContent {Source = "Cake.Slack.dll"}},
-				BasePath 		= binDir, 
-				OutputDirectory 	= nugetRoot
+                                BasePath                = binDir,
+                                OutputDirectory         = nugetRoot
                             };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -88,11 +88,11 @@ Task("Clean")
     .Does(() =>
 {
     // Clean solution directories.
-    foreach(var solutionDir in solutionDirs)
+    foreach(var path in solutionPaths)
     {
-        Information("Cleaning {0}", solutionDir);
-        CleanDirectories(solutionDir + "/**/bin/" + configuration);
-        CleanDirectories(solutionDir + "/**/obj/" + configuration);
+        Information("Cleaning {0}", path);
+        CleanDirectories(path + "/**/bin/" + configuration);
+        CleanDirectories(path + "/**/obj/" + configuration);
     }
 });
 
@@ -102,7 +102,7 @@ Task("Restore")
     // Restore all NuGet packages.
     foreach(var solution in solutions)
     {
-        Information("Restoring {0}", solution);
+        Information("Restoring {0}...", solution);
         NuGetRestore(solution);
     }
 });
@@ -126,7 +126,7 @@ Task("Build")
     foreach(var solution in solutions)
     {
         Information("Building {0}", solution);
-        MSBuild(solution, settings => 
+        MSBuild(solution, settings =>
             settings.SetPlatformTarget(PlatformTarget.MSIL)
                 .WithProperty("TreatWarningsAsErrors","true")
                 .WithTarget("Build")
@@ -139,17 +139,17 @@ Task("Create-NuGet-Package")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    if (!Directory.Exists(nugetRoot))
+    if (!DirectoryExists(nugetRoot))
     {
-	CreateDirectory(nugetRoot);
+        CreateDirectory(nugetRoot);
     }
     NuGetPack("./nuspec/Cake.Slack.nuspec", nuGetPackSettings);
-}); 
+});
 
 Task("Publish-MyGet")
     .IsDependentOn("Create-NuGet-Package")
     .WithCriteria(() => !isLocalBuild)
-    .WithCriteria(() => !isPullRequest) 
+    .WithCriteria(() => !isPullRequest)
     .Does(() =>
 {
     // Resolve the API key.
@@ -170,7 +170,7 @@ Task("Publish-MyGet")
     NuGetPush(package, new NuGetPushSettings {
         Source = source,
         ApiKey = apiKey
-    }); 
+    });
 });
 
 

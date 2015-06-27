@@ -8,6 +8,16 @@ namespace Cake.Slack.Chat
     public sealed class SlackChatMessageSettings
     {
         /// <summary>
+        /// Slack token used for authentication.
+        /// </summary>
+        public string Token { get; set; }
+
+        /// <summary>
+        /// This can be used instead of token (https://api.slack.com/incoming-webhooks)
+        /// </summary>
+        public string IncomingWebHookUrl { get; set; }
+
+        /// <summary>
         /// Name of bot.
         /// </summary>
         public string UserName { get; set; }

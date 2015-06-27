@@ -4,7 +4,7 @@ using System.Text;
 namespace Cake.Slack.Chat
 {
     /// <summary>
-    /// The result of Slack Chat API post
+    /// The result of SlackProvider Chat API post
     /// </summary>
     public sealed class SlackChatMessageResult
     {

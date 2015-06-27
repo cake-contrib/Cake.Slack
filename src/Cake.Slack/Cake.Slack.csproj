@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat\SlackChatProvider.cs" />
     <Compile Include="Chat\SlackChatApi.cs" />
     <Compile Include="Chat\SlackChatMessageSettings.cs" />
     <Compile Include="Chat\SlackChatMessageResult.cs" />
@@ -64,11 +65,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Include_T4Include.tt</DependentUpon>
     </Compile>
-    <Compile Include="Chat\SlackChatExtensions.cs" />
+    <Compile Include="Chat\SlackChatAliases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="SlackProvider.cs" />
+    <Compile Include="SlackAliases.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Include_T4Include.tt">
