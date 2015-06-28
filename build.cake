@@ -55,23 +55,10 @@ var nuGetPackSettings   = new NuGetPackSettings {
                                 OutputDirectory         = nugetRoot
                             };
 
-///////////////////////////////////////////////////////////////////////////////
-// Output some information about the current build.
-///////////////////////////////////////////////////////////////////////////////
-var buildStartMessage = string.Format(
-                            "Building version {0} of {1} ({2}).",
-                            version,
-                            assemblyInfo.Product,
-                            semVersion
-                            );
-
-Information(buildStartMessage);
-
-Slack.Chat.PostMessage(
-        channel:slackChannel,
-        text:buildStartMessage,
-        messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackHookUri }
-    );
+if (!isLocalBuild)
+{
+    (AppVeyor as Cake.Common.Build.AppVeyor.AppVeyorProvider).UpdateBuildVersion(semVersion);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -81,6 +68,23 @@ Setup(() =>
 {
     // Executed BEFORE the first task.
     Information("Running tasks...");
+
+    var buildStartMessage = string.Format(
+                            "Building version {0} of {1} ({2}).",
+                            version,
+                            assemblyInfo.Product,
+                            semVersion
+                            );
+
+    Information(buildStartMessage);
+    if(!string.IsNullOrEmpty(slackHookUri))
+    {
+        Slack.Chat.PostMessage(
+                channel:slackChannel,
+                text:buildStartMessage,
+                messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackHookUri }
+            );
+    }
 });
 
 Teardown(() =>
