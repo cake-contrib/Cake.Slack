@@ -19,7 +19,9 @@ var releaseNotes        = ParseReleaseNotes("./ReleaseNotes.md");
 var version             = releaseNotes.Version.ToString();
 var binDir              = "./src/Cake.Slack/bin/" + configuration;
 var nugetRoot           = "./nuget/";
-var semVersion          = isLocalBuild ? version : (version + string.Concat("-build-", AppVeyor.Environment.Build.Number));
+var semVersion          = isLocalBuild
+                                ? version
+                                : string.Concat(version, "-build-", AppVeyor.Environment.Build.Number);
 var assemblyInfo        = new AssemblyInfoSettings {
                                 Title                   = "Cake.Slack",
                                 Description             = "Cake Slack AddIn",
@@ -56,12 +58,19 @@ var nuGetPackSettings   = new NuGetPackSettings {
 ///////////////////////////////////////////////////////////////////////////////
 // Output some information about the current build.
 ///////////////////////////////////////////////////////////////////////////////
-var buildStartMessage = string.Format("Building version {0} of {1} ({2}).", version, assemblyInfo.Product, semVersion);
+var buildStartMessage = string.Format(
+                            "Building version {0} of {1} ({2}).",
+                            version,
+                            assemblyInfo.Product,
+                            semVersion
+                            );
+
 Information(buildStartMessage);
+
 Slack.Chat.PostMessage(
-            channel:slackChannel,
-            text:buildStartMessage,
-            messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackHookUri }
+        channel:slackChannel,
+        text:buildStartMessage,
+        messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackHookUri }
     );
 
 ///////////////////////////////////////////////////////////////////////////////
