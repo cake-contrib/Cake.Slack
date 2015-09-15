@@ -13,15 +13,15 @@
 
 
 // ############################################################################
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/IJsonWrapper.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonData.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonException.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMapper.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonReader.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonWriter.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMockWrapper.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/Lexer.cs
-// @@@ INCLUDING: https://raw.github.com/lbv/litjson/master/src/LitJson/ParserToken.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonData.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonException.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMapper.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonReader.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonWriter.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/Lexer.cs
+// @@@ INCLUDING: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/ParserToken.cs
 // ############################################################################
 // Certains directives such as #define and // Resharper comments has to be 
 // moved to top in order to work properly    
@@ -29,7 +29,7 @@
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/IJsonWrapper.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs
 namespace Cake.Slack
 {
     #region Header
@@ -93,11 +93,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/IJsonWrapper.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonData.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonData.cs
 namespace Cake.Slack
 {
     #region Header
@@ -1103,11 +1103,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonData.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonData.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonException.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonException.cs
 namespace Cake.Slack
 {
     #region Header
@@ -1171,11 +1171,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonException.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonException.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMapper.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMapper.cs
 namespace Cake.Slack
 {
     #region Header
@@ -1280,33 +1280,33 @@ namespace Cake.Slack
         public class JsonMapper
         {
             #region Fields
-            private static int max_nesting_depth;
+            private static readonly int max_nesting_depth;
     
-            private static IFormatProvider datetime_format;
+            private static readonly IFormatProvider datetime_format;
     
-            private static IDictionary<Type, ExporterFunc> base_exporters_table;
-            private static IDictionary<Type, ExporterFunc> custom_exporters_table;
+            private static readonly IDictionary<Type, ExporterFunc> base_exporters_table;
+            private static readonly IDictionary<Type, ExporterFunc> custom_exporters_table;
     
-            private static IDictionary<Type,
+            private static readonly IDictionary<Type,
                     IDictionary<Type, ImporterFunc>> base_importers_table;
-            private static IDictionary<Type,
+            private static readonly IDictionary<Type,
                     IDictionary<Type, ImporterFunc>> custom_importers_table;
     
-            private static IDictionary<Type, ArrayMetadata> array_metadata;
+            private static readonly IDictionary<Type, ArrayMetadata> array_metadata;
             private static readonly object array_metadata_lock = new Object ();
     
-            private static IDictionary<Type,
+            private static readonly IDictionary<Type,
                     IDictionary<Type, MethodInfo>> conv_ops;
             private static readonly object conv_ops_lock = new Object ();
     
-            private static IDictionary<Type, ObjectMetadata> object_metadata;
+            private static readonly IDictionary<Type, ObjectMetadata> object_metadata;
             private static readonly object object_metadata_lock = new Object ();
     
-            private static IDictionary<Type,
+            private static readonly IDictionary<Type,
                     IList<PropertyMetadata>> type_properties;
             private static readonly object type_properties_lock = new Object ();
     
-            private static JsonWriter      static_writer;
+            private static readonly JsonWriter      static_writer;
             private static readonly object static_writer_lock = new Object ();
             #endregion
     
@@ -2106,11 +2106,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMapper.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMapper.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonReader.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonReader.cs
 namespace Cake.Slack
 {
     #region Header
@@ -2157,7 +2157,7 @@ namespace Cake.Slack
         public class JsonReader
         {
             #region Fields
-            private static IDictionary<int, IDictionary<int, int[]>> parse_table;
+            private static readonly IDictionary<int, IDictionary<int, int[]>> parse_table;
     
             private Stack<int>    automaton_stack;
             private int           current_input;
@@ -2213,7 +2213,7 @@ namespace Cake.Slack
             #region Constructors
             static JsonReader ()
             {
-                PopulateParseTable ();
+                parse_table = PopulateParseTable ();
             }
     
             public JsonReader (string json_text) :
@@ -2253,120 +2253,122 @@ namespace Cake.Slack
     
     
             #region Static Methods
-            private static void PopulateParseTable ()
+            private static IDictionary<int, IDictionary<int, int[]>> PopulateParseTable ()
             {
                 // See section A.2. of the manual for details
-                parse_table = new Dictionary<int, IDictionary<int, int[]>> ();
-    
-                TableAddRow (ParserToken.Array);
-                TableAddCol (ParserToken.Array, '[',
-                             '[',
-                             (int) ParserToken.ArrayPrime);
-    
-                TableAddRow (ParserToken.ArrayPrime);
-                TableAddCol (ParserToken.ArrayPrime, '"',
-                             (int) ParserToken.Value,
-    
-                             (int) ParserToken.ValueRest,
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, '[',
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest,
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, ']',
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, '{',
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest,
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, (int) ParserToken.Number,
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest,
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, (int) ParserToken.True,
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest,
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, (int) ParserToken.False,
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest,
-                             ']');
-                TableAddCol (ParserToken.ArrayPrime, (int) ParserToken.Null,
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest,
-                             ']');
-    
-                TableAddRow (ParserToken.Object);
-                TableAddCol (ParserToken.Object, '{',
-                             '{',
-                             (int) ParserToken.ObjectPrime);
-    
-                TableAddRow (ParserToken.ObjectPrime);
-                TableAddCol (ParserToken.ObjectPrime, '"',
-                             (int) ParserToken.Pair,
-                             (int) ParserToken.PairRest,
-                             '}');
-                TableAddCol (ParserToken.ObjectPrime, '}',
-                             '}');
-    
-                TableAddRow (ParserToken.Pair);
-                TableAddCol (ParserToken.Pair, '"',
-                             (int) ParserToken.String,
-                             ':',
-                             (int) ParserToken.Value);
-    
-                TableAddRow (ParserToken.PairRest);
-                TableAddCol (ParserToken.PairRest, ',',
-                             ',',
-                             (int) ParserToken.Pair,
-                             (int) ParserToken.PairRest);
-                TableAddCol (ParserToken.PairRest, '}',
-                             (int) ParserToken.Epsilon);
-    
-                TableAddRow (ParserToken.String);
-                TableAddCol (ParserToken.String, '"',
-                             '"',
-                             (int) ParserToken.CharSeq,
-                             '"');
-    
-                TableAddRow (ParserToken.Text);
-                TableAddCol (ParserToken.Text, '[',
-                             (int) ParserToken.Array);
-                TableAddCol (ParserToken.Text, '{',
-                             (int) ParserToken.Object);
-    
-                TableAddRow (ParserToken.Value);
-                TableAddCol (ParserToken.Value, '"',
-                             (int) ParserToken.String);
-                TableAddCol (ParserToken.Value, '[',
-                             (int) ParserToken.Array);
-                TableAddCol (ParserToken.Value, '{',
-                             (int) ParserToken.Object);
-                TableAddCol (ParserToken.Value, (int) ParserToken.Number,
-                             (int) ParserToken.Number);
-                TableAddCol (ParserToken.Value, (int) ParserToken.True,
-                             (int) ParserToken.True);
-                TableAddCol (ParserToken.Value, (int) ParserToken.False,
-                             (int) ParserToken.False);
-                TableAddCol (ParserToken.Value, (int) ParserToken.Null,
-                             (int) ParserToken.Null);
-    
-                TableAddRow (ParserToken.ValueRest);
-                TableAddCol (ParserToken.ValueRest, ',',
-                             ',',
-                             (int) ParserToken.Value,
-                             (int) ParserToken.ValueRest);
-                TableAddCol (ParserToken.ValueRest, ']',
-                             (int) ParserToken.Epsilon);
+                IDictionary<int, IDictionary<int, int[]>> parse_table = new Dictionary<int, IDictionary<int, int[]>> ();
+        
+                TableAddRow (parse_table, ParserToken.Array);
+                TableAddCol (parse_table, ParserToken.Array, '[',
+                                '[',
+                                (int) ParserToken.ArrayPrime);
+        
+                TableAddRow (parse_table, ParserToken.ArrayPrime);
+                TableAddCol (parse_table, ParserToken.ArrayPrime, '"',
+                                (int) ParserToken.Value,
+        
+                                (int) ParserToken.ValueRest,
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, '[',
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest,
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, ']',
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, '{',
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest,
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, (int) ParserToken.Number,
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest,
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, (int) ParserToken.True,
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest,
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, (int) ParserToken.False,
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest,
+                                ']');
+                TableAddCol (parse_table, ParserToken.ArrayPrime, (int) ParserToken.Null,
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest,
+                                ']');
+        
+                TableAddRow (parse_table, ParserToken.Object);
+                TableAddCol (parse_table, ParserToken.Object, '{',
+                                '{',
+                                (int) ParserToken.ObjectPrime);
+        
+                TableAddRow (parse_table, ParserToken.ObjectPrime);
+                TableAddCol (parse_table, ParserToken.ObjectPrime, '"',
+                                (int) ParserToken.Pair,
+                                (int) ParserToken.PairRest,
+                                '}');
+                TableAddCol (parse_table, ParserToken.ObjectPrime, '}',
+                                '}');
+        
+                TableAddRow (parse_table, ParserToken.Pair);
+                TableAddCol (parse_table, ParserToken.Pair, '"',
+                                (int) ParserToken.String,
+                                ':',
+                                (int) ParserToken.Value);
+        
+                TableAddRow (parse_table, ParserToken.PairRest);
+                TableAddCol (parse_table, ParserToken.PairRest, ',',
+                                ',',
+                                (int) ParserToken.Pair,
+                                (int) ParserToken.PairRest);
+                TableAddCol (parse_table, ParserToken.PairRest, '}',
+                                (int) ParserToken.Epsilon);
+        
+                TableAddRow (parse_table, ParserToken.String);
+                TableAddCol (parse_table, ParserToken.String, '"',
+                                '"',
+                                (int) ParserToken.CharSeq,
+                                '"');
+        
+                TableAddRow (parse_table, ParserToken.Text);
+                TableAddCol (parse_table, ParserToken.Text, '[',
+                                (int) ParserToken.Array);
+                TableAddCol (parse_table, ParserToken.Text, '{',
+                                (int) ParserToken.Object);
+        
+                TableAddRow (parse_table, ParserToken.Value);
+                TableAddCol (parse_table, ParserToken.Value, '"',
+                                (int) ParserToken.String);
+                TableAddCol (parse_table, ParserToken.Value, '[',
+                                (int) ParserToken.Array);
+                TableAddCol (parse_table, ParserToken.Value, '{',
+                                (int) ParserToken.Object);
+                TableAddCol (parse_table, ParserToken.Value, (int) ParserToken.Number,
+                                (int) ParserToken.Number);
+                TableAddCol (parse_table, ParserToken.Value, (int) ParserToken.True,
+                                (int) ParserToken.True);
+                TableAddCol (parse_table, ParserToken.Value, (int) ParserToken.False,
+                                (int) ParserToken.False);
+                TableAddCol (parse_table, ParserToken.Value, (int) ParserToken.Null,
+                                (int) ParserToken.Null);
+        
+                TableAddRow (parse_table, ParserToken.ValueRest);
+                TableAddCol (parse_table, ParserToken.ValueRest, ',',
+                                ',',
+                                (int) ParserToken.Value,
+                                (int) ParserToken.ValueRest);
+                TableAddCol (parse_table, ParserToken.ValueRest, ']',
+                                (int) ParserToken.Epsilon);
+        
+                return parse_table;
             }
     
-            private static void TableAddCol (ParserToken row, int col,
+            private static void TableAddCol (IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken row, int col,
                                              params int[] symbols)
             {
                 parse_table[(int) row].Add (col, symbols);
             }
     
-            private static void TableAddRow (ParserToken rule)
+            private static void TableAddRow (IDictionary<int, IDictionary<int, int[]>> parse_table, ParserToken rule)
             {
                 parse_table.Add ((int) rule, new Dictionary<int, int[]> ());
             }
@@ -2587,11 +2589,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonReader.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonReader.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonWriter.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonWriter.cs
 namespace Cake.Slack
 {
     #region Header
@@ -2635,7 +2637,7 @@ namespace Cake.Slack
         public class JsonWriter
         {
             #region Fields
-            private static NumberFormatInfo number_format;
+            private static readonly NumberFormatInfo number_format;
     
             private WriterContext        context;
             private Stack<WriterContext> ctx_stack;
@@ -3058,11 +3060,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonWriter.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonWriter.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMockWrapper.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs
 namespace Cake.Slack
 {
     #region Header
@@ -3171,11 +3173,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMockWrapper.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/Lexer.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/Lexer.cs
 namespace Cake.Slack
 {
     #region Header
@@ -3211,8 +3213,8 @@ namespace Cake.Slack
             #region Fields
             private delegate bool StateHandler (FsmContext ctx);
     
-            private static int[]          fsm_return_table;
-            private static StateHandler[] fsm_handler_table;
+            private static readonly int[]          fsm_return_table;
+            private static readonly StateHandler[] fsm_handler_table;
     
             private bool          allow_comments;
             private bool          allow_single_quoted_strings;
@@ -3257,7 +3259,7 @@ namespace Cake.Slack
             #region Constructors
             static Lexer ()
             {
-                PopulateFsmTables ();
+                PopulateFsmTables (out fsm_handler_table, out fsm_return_table);
             }
     
             public Lexer (TextReader reader)
@@ -3310,7 +3312,7 @@ namespace Cake.Slack
                 }
             }
     
-            private static void PopulateFsmTables ()
+            private static void PopulateFsmTables (out StateHandler[] fsm_handler_table, out int[] fsm_return_table)
             {
                 // See section A.1. of the manual for details of the finite
                 // state machine.
@@ -4091,11 +4093,11 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/Lexer.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/Lexer.cs
 // ############################################################################
 
 // ############################################################################
-// @@@ BEGIN_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/ParserToken.cs
+// @@@ BEGIN_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/ParserToken.cs
 namespace Cake.Slack
 {
     #region Header
@@ -4143,7 +4145,7 @@ namespace Cake.Slack
         }
     }
 }
-// @@@ END_INCLUDE: https://raw.github.com/lbv/litjson/master/src/LitJson/ParserToken.cs
+// @@@ END_INCLUDE: https://raw.github.com/WCOMAB/litjson/master/src/LitJson/ParserToken.cs
 // ############################################################################
 // ############################################################################
 // Certains directives such as #define and // Resharper comments has to be 
@@ -4155,17 +4157,17 @@ namespace Cake.Slack.Include
     static partial class MetaData
     {
         public const string RootPath        = @"https://raw.github.com/";
-        public const string IncludeDate     = @"2015-01-10T14:20:04";
+        public const string IncludeDate     = @"2015-09-15T16:30:30";
 
-        public const string Include_0       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/IJsonWrapper.cs";
-        public const string Include_1       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/JsonData.cs";
-        public const string Include_2       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/JsonException.cs";
-        public const string Include_3       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMapper.cs";
-        public const string Include_4       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/JsonReader.cs";
-        public const string Include_5       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/JsonWriter.cs";
-        public const string Include_6       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/JsonMockWrapper.cs";
-        public const string Include_7       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/Lexer.cs";
-        public const string Include_8       = @"https://raw.github.com/lbv/litjson/master/src/LitJson/ParserToken.cs";
+        public const string Include_0       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs";
+        public const string Include_1       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonData.cs";
+        public const string Include_2       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonException.cs";
+        public const string Include_3       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMapper.cs";
+        public const string Include_4       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonReader.cs";
+        public const string Include_5       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonWriter.cs";
+        public const string Include_6       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs";
+        public const string Include_7       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/Lexer.cs";
+        public const string Include_8       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/ParserToken.cs";
     }
 }
 // ############################################################################

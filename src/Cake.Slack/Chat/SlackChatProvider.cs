@@ -1,11 +1,13 @@
 ﻿using System;
 using Cake.Core;
+using Cake.Core.Annotations;
 
 namespace Cake.Slack.Chat
 {
     /// <summary>
     /// Contains SlackProvider Chat functionality.
     /// </summary>
+    [CakeAliasCategory("Slack")]
     public sealed class SlackChatProvider
     {
         private readonly ICakeContext _context;
@@ -17,6 +19,7 @@ namespace Cake.Slack.Chat
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
         /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
+        [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
             string token,
             string channel,
@@ -38,6 +41,7 @@ namespace Cake.Slack.Chat
         /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
         /// <param name="messageSettings">Lets you override default settings like UserName, IconUrl or if it should ThrowOnFail</param>
+        [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
             string channel,
             string text,

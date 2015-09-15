@@ -9,15 +9,15 @@
     Includes    = new []
         {
             // Lit JSON
-            Include (@"lbv/litjson/master/src/LitJson/IJsonWrapper.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/JsonData.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/JsonException.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/JsonMapper.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/JsonReader.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/JsonWriter.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/JsonMockWrapper.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/Lexer.cs"),
-            Include (@"lbv/litjson/master/src/LitJson/ParserToken.cs")
+            Include (@"WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonData.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonException.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonMapper.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonReader.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonWriter.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/Lexer.cs"),
+            Include (@"WCOMAB/litjson/master/src/LitJson/ParserToken.cs")
         };
 #>
 <#@ include file="$(SolutionDir)\packages\T4Include.1.1.4\T4\IncludeWebFile.ttinclude" #>

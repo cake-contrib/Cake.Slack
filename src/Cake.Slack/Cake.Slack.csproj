@@ -37,6 +37,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Cake.Slack.XML</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cake.Common">
@@ -65,7 +67,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Include_T4Include.tt</DependentUpon>
     </Compile>
-    <Compile Include="Chat\SlackChatAliases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>

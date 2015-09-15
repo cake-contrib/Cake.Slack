@@ -50,14 +50,18 @@ var nuGetPackSettings   = new NuGetPackSettings {
                                 RequireLicenseAcceptance= false,
                                 Symbols                 = false,
                                 NoPackageAnalysis       = true,
-                                Files                   = new [] {new NuSpecContent {Source = "Cake.Slack.dll"}},
+                                Files                   = new [] {
+                                                                    new NuSpecContent {Source = "Cake.Slack.dll"},
+                                                                    new NuSpecContent {Source = "Cake.Slack.pdb"},
+                                                                    new NuSpecContent {Source = "Cake.Slack.xml"}
+                                                                 },
                                 BasePath                = binDir,
                                 OutputDirectory         = nugetRoot
                             };
 
 if (!isLocalBuild)
 {
-    (AppVeyor as Cake.Common.Build.AppVeyor.AppVeyorProvider).UpdateBuildVersion(semVersion);
+    AppVeyor.UpdateBuildVersion(semVersion);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -156,7 +160,7 @@ Task("Create-NuGet-Package")
     {
         CreateDirectory(nugetRoot);
     }
-    NuGetPack("./nuspec/Cake.Slack.nuspec", nuGetPackSettings);
+    NuGetPack(nuGetPackSettings);
 });
 
 Task("Publish-MyGet")

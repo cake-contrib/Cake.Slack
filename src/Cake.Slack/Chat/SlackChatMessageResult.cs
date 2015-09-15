@@ -1,4 +1,6 @@
 using System.Text;
+using Cake.Core.Annotations;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 namespace Cake.Slack.Chat
@@ -6,6 +8,7 @@ namespace Cake.Slack.Chat
     /// <summary>
     /// The result of SlackProvider Chat API post
     /// </summary>
+    [CakeAliasCategory("Slack")]
     public sealed class SlackChatMessageResult
     {
         private readonly bool _ok;

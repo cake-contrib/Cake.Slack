@@ -1,3 +1,6 @@
+### New in 0.1.0 (Released 2015/06/27)
+* Removed obsolete code
+* Added xml/pdb to NuGet
 ### New in 0.0.2 (Released 2015/06/27)
 * Added support to post message using incoming Slack web hook
 * Refactored to property alias (method alias kept for backward compatibility)
