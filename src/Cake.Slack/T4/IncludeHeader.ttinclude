@@ -1,0 +1,378 @@
+﻿// ############################################################################
+// #                                                                          #
+// #        ---==>  T H I S  F I L E  I S   G E N E R A T E D  <==---         #
+// #                                                                          #
+// # This means that any edits to the .cs file will be lost when its          #
+// # regenerated. Changes should instead be applied to the corresponding      #
+// # text template file (.tt)                                                 #
+// ############################################################################
+
+<#@ assembly    name        = "System.Core"                     #>
+<#@ import      namespace   = "System.Net"                      #>
+<#@ import      namespace   = "System.Text.RegularExpressions"  #>
+<#@ import      namespace   = "System.Collections.Generic"      #>
+<#@ import      namespace   = "System.Linq"                     #>
+
+<#
+    // ----------------------------------------------------------------------------------------------
+    // Copyright (c) Mårten Rånge.
+    // ----------------------------------------------------------------------------------------------
+    // This source code is subject to terms and conditions of the Microsoft Public License. A 
+    // copy of the license can be found in the License.html file at the root of this distribution. 
+    // If you cannot locate the  Microsoft Public License, please send an email to 
+    // dlr@microsoft.com. By using this source code in any fashion, you are agreeing to be bound 
+    //  by the terms of the Microsoft Public License.
+    // ----------------------------------------------------------------------------------------------
+    // You must not remove this notice, or any other, from this software.
+    // ----------------------------------------------------------------------------------------------
+#>
+<#
+    var seenIncludes = new HashSet<string> (StringComparer.OrdinalIgnoreCase);
+#>
+
+// ############################################################################
+<#
+    var processed = new List<IncludeFile> ();
+    var toBeProcessed = new Queue<IncludeFile> (Includes ?? new IncludeFile[0]);
+
+    while (toBeProcessed.Count > 0)
+    {
+        var include         = toBeProcessed.Dequeue ();
+        include.FullPath    = Extension_GetFullPath (include); 
+        try
+        {
+            var fullContainer   = Extension_GetFullContainer (include);
+
+            if (seenIncludes.Contains (include.FullPath))
+            {
+#>
+// @@@ SKIPPING (Already seen): <#=include.FullPath#>
+<#
+                continue;
+            }
+
+            if (BlackList.Any (bl => include.FullPath.Contains (bl.Fragment)))
+            {
+#>
+// @@@ SKIPPING (Blacklisted): <#=include.FullPath#>
+<#
+                continue;
+            }
+
+            seenIncludes.Add (include.FullPath);
+
+            if (!Extension_Exists (include))
+            {
+#>
+// @@@ SKIPPING (Not found): <#=include.FullPath#>
+<#
+                continue;
+            }
+#>
+// @@@ INCLUDING: <#=include.FullPath#>
+<#
+            processed.Add (include);
+            var lines = Extension_ReadAllLines (include);
+
+            if(include.Internalize)
+            {
+                lines = Internalize(lines);
+            }
+
+            foreach (var line in lines)
+            {
+                var includeMatch = s_matchInclude.Match (line);
+                var topMatch = s_matchMoveToTop.Match (line);
+                var bottomMatch = s_matchMoveToBottom.Match (line);
+                if (includeMatch.Success)
+                {
+                    var fileName = includeMatch.Groups["fileName"].Value;
+#>
+// @@@ INCLUDE_FOUND: <#=fileName#>
+<#
+                    toBeProcessed.Enqueue (Include (Extension_CombinePath (fullContainer, fileName), include.NoOuterNamespace, include.Internalize));
+                }
+                else if (topMatch.Success)
+                {
+                    include.TopLines.Add (line);
+                }
+                else if (bottomMatch.Success)
+                {
+                    include.BottomLines.Add (line);
+                }
+                else
+                {
+                    include.MiddleLines.Add (line);
+                }
+            }
+        }
+        catch (Exception exc)
+        {
+#>
+// @@@ SKIPPING (Exception: "<#=exc.Message#>"): <#=include.FullPath#>
+<#
+            continue;
+        }
+    }
+#>
+// ############################################################################
+// Certains directives such as #define and // Resharper comments has to be 
+// moved to top in order to work properly    
+// ############################################################################
+<#
+    foreach (var topLine in processed.SelectMany(i => i.TopLines).Distinct ().OrderBy (p => p))
+    {
+        WriteLine (topLine);
+    }
+#>
+// ############################################################################
+<#
+    foreach (var u in Usings)
+    {
+        if (string.IsNullOrEmpty (u.Namespace))
+        {
+            continue;
+        }
+#>
+using <#=u.Namespace#>;
+<#
+    }
+
+    foreach (var include in processed)
+    {
+        var hasNamespace = 
+                !string.IsNullOrEmpty (Namespace) 
+            &&  !include.NoOuterNamespace
+            ;
+#>
+
+// ############################################################################
+// @@@ BEGIN_INCLUDE: <#=include.FullPath#>
+<#
+        if (hasNamespace)
+        {
+#>
+namespace <#=Namespace#>
+{
+<#
+        }
+
+        foreach (var middleLine in include.MiddleLines)
+        {
+            if (hasNamespace)
+            {
+                Write ("    ");
+            }
+
+            WriteLine (middleLine);
+        }
+        if (hasNamespace)
+        {
+#>
+}
+<#
+        }
+#>
+// @@@ END_INCLUDE: <#=include.FullPath#>
+// ############################################################################
+<#
+    }
+#>
+// ############################################################################
+// Certains directives such as #define and // Resharper comments has to be 
+// moved to bottom in order to work properly    
+// ############################################################################
+<#
+    foreach (var bottomLine in processed.SelectMany(i => i.BottomLines).Distinct ().OrderBy (p => p))
+    {
+        WriteLine (bottomLine);
+    }
+#>
+// ############################################################################
+<#
+    if (string.IsNullOrEmpty (Namespace))
+    {
+#>
+namespace Include
+<#
+    }
+    else
+    {
+#>
+namespace <#=Namespace#>.Include
+<#
+    }
+#>
+{
+    static partial class MetaData
+    {
+        public const string RootPath        = @"<#=RootPath#>";
+        public const string IncludeDate     = @"<#=DateTime.Now.ToString ("yyyy-MM-ddTHH:mm:ss")#>";
+
+<#
+    var iter = -1;
+    foreach (var include in processed)
+    {
+        ++iter;
+#>
+        public const string Include_<#=iter#>       = @"<#=include.FullPath#>";
+<#
+    }
+#>
+    }
+}
+// ############################################################################
+
+<#+
+
+    string Namespace    = "T4Include"           ;
+    string RootPath     = Extension_RootPath    ;
+    
+    IncludeFile[]               Includes    = new IncludeFile[0];
+    UsingNamespace[]            Usings      = new UsingNamespace[0];
+    BlackListedFileFragment[]   BlackList   = new [] 
+                                                {
+                                                    BlackListFragment("AssemblyInfo.cs"),
+                                                    BlackListFragment("Global_AssemblyInfo.cs"),
+                                                };
+
+    static readonly Regex s_matchInclude = new Regex (
+        @"^//\s*###\s*INCLUDE\s*:\s*(?<fileName>.*)$",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled |RegexOptions.CultureInvariant |RegexOptions.Singleline
+        );
+
+    static readonly Regex s_matchMoveToTop = new Regex (
+        @"^(\#define|\#pragma warning disable|// ReSharper disable )",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled |RegexOptions.CultureInvariant |RegexOptions.Singleline
+        );
+    static readonly Regex s_matchMoveToBottom = new Regex (
+        @"^(\#define|\#pragma warning restore|// ReSharper restore )",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled |RegexOptions.CultureInvariant |RegexOptions.Singleline
+        );
+    class BlackListedFileFragment
+    {
+        public string Fragment;
+    }
+
+    static BlackListedFileFragment BlackListFragment (string fragment)
+    {
+        return new BlackListedFileFragment
+        {
+            Fragment = fragment ?? "",
+        };
+    }
+
+    sealed class IncludeFile 
+    {
+        public string LocalPath             ;
+        public bool   NoOuterNamespace      ;
+        public bool   Internalize           ;
+
+        public string FullPath              ;
+        public List<string> TopLines        = new List<string> ();
+        public List<string> MiddleLines     = new List<string> ();
+        public List<string> BottomLines     = new List<string> ();
+    }
+
+    static IncludeFile Include (string file, bool noOuterNamespace = false, bool internalize = false)
+    {
+        return new IncludeFile 
+            { 
+                LocalPath       = file ?? ""        , 
+                NoOuterNamespace= noOuterNamespace  ,
+                Internalize     = internalize       , 
+            };
+    }
+
+    sealed class UsingNamespace 
+    {
+        public string Namespace;
+    }
+
+    static UsingNamespace Using (string ns)
+    {
+        return new UsingNamespace { Namespace = ns ?? "", };
+    }
+
+    static readonly Regex s_typeClassificationWithinCommentOrQuotes = new Regex(
+        "\".*?(struct|class|enum).*?\"|//.+?(struct|class|enum).*?",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline
+        );
+
+    static string[] Internalize(string[] lines)
+    {
+        var depth = 0;
+        var namespaceDepth = 0;
+        var processed = new string[lines.Length];
+        var lineIndex = 0;
+
+        foreach (var line in lines)
+        {
+            var wasProcessed = false;
+
+            try
+            {
+                if (line.Contains("namespace"))
+                {
+                    namespaceDepth++;
+                }
+                if (line.Trim() == "{" || line.Trim().EndsWith("{") || line == "{")
+                {
+                    depth++;
+                }
+                if (line.Trim() == "}" || line.Trim().EndsWith("}") || line == "}")
+                {
+                    if (depth == namespaceDepth)
+                    {
+                        namespaceDepth--;
+                    }
+                    depth--;
+                }
+                                    
+                // Internalizing should only affect the most outer scope.
+                if (depth == namespaceDepth)
+                {
+                    if (line.Contains("class ") ||
+                        line.Contains("struct ") ||
+                        line.Contains("enum ") ||
+                        line.Contains("interface ") ||
+                        line.Contains("delegate "))
+                    {
+                        if (!s_typeClassificationWithinCommentOrQuotes.IsMatch(line))
+                        {
+                            var isPublic = line.Contains("public");
+                            var isInternal = line.Contains("internal");
+                            if (isPublic && !isInternal)
+                            {
+                                var whitespace = string.Empty;
+                                var signature = line;
+
+                                var index = line.TakeWhile(char.IsWhiteSpace).Count();
+                                if (index > 0)
+                                {
+                                    // Keep whitespace.
+                                    whitespace = line.Substring(0, index);
+                                    signature = line.Substring(index, line.Length - index);
+                                }
+
+                                processed[lineIndex] = string.Concat(whitespace, signature.Replace("public ", "internal "));
+                                wasProcessed = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!wasProcessed)
+                {
+                    processed[lineIndex] = line;
+                }
+            }
+            finally
+            {
+                lineIndex++;
+            }
+        }
+
+        return processed;
+    }
+#>

@@ -1,6 +1,7 @@
 //Disable documentation warning for external code
 #pragma warning disable 1591
 #pragma warning disable 1587
+#pragma warning disable 3019
 // ############################################################################
 // #                                                                          #
 // #        ---==>  T H I S  F I L E  I S   G E N E R A T E D  <==---         #
@@ -51,7 +52,7 @@ namespace Cake.Slack
     
     namespace LitJson
     {
-        public enum JsonType
+        internal enum JsonType
         {
             None,
     
@@ -64,7 +65,7 @@ namespace Cake.Slack
             Boolean
         }
     
-        public interface IJsonWrapper : IList, IOrderedDictionary
+        internal interface IJsonWrapper : IList, IOrderedDictionary
         {
             bool IsArray   { get; }
             bool IsBoolean { get; }
@@ -121,7 +122,7 @@ namespace Cake.Slack
     
     namespace LitJson
     {
-        public class JsonData : IJsonWrapper, IEquatable<JsonData>
+        internal class JsonData : IJsonWrapper, IEquatable<JsonData>
         {
             #region Fields
             private IList<JsonData>               inst_array;
@@ -1126,7 +1127,7 @@ namespace Cake.Slack
     
     namespace LitJson
     {
-        public class JsonException : ApplicationException
+        internal class JsonException : ApplicationException
         {
             public JsonException () : base ()
             {
@@ -1269,15 +1270,15 @@ namespace Cake.Slack
     
     
         internal delegate void ExporterFunc    (object obj, JsonWriter writer);
-        public   delegate void ExporterFunc<T> (T obj, JsonWriter writer);
+        internal   delegate void ExporterFunc<T> (T obj, JsonWriter writer);
     
         internal delegate object ImporterFunc                (object input);
-        public   delegate TValue ImporterFunc<TJson, TValue> (TJson input);
+        internal   delegate TValue ImporterFunc<TJson, TValue> (TJson input);
     
-        public delegate IJsonWrapper WrapperFactory ();
+        internal delegate IJsonWrapper WrapperFactory ();
     
     
-        public class JsonMapper
+        internal class JsonMapper
         {
             #region Fields
             private static readonly int max_nesting_depth;
@@ -2132,7 +2133,7 @@ namespace Cake.Slack
     
     namespace LitJson
     {
-        public enum JsonToken
+        internal enum JsonToken
         {
             None,
     
@@ -2154,7 +2155,7 @@ namespace Cake.Slack
         }
     
     
-        public class JsonReader
+        internal class JsonReader
         {
             #region Fields
             private static readonly IDictionary<int, IDictionary<int, int[]>> parse_table;
@@ -2634,7 +2635,7 @@ namespace Cake.Slack
             public int  Padding;
         }
     
-        public class JsonWriter
+        internal class JsonWriter
         {
             #region Fields
             private static readonly NumberFormatInfo number_format;
@@ -3086,7 +3087,7 @@ namespace Cake.Slack
     
     namespace LitJson
     {
-        public class JsonMockWrapper : IJsonWrapper
+        internal class JsonMockWrapper : IJsonWrapper
         {
             public bool IsArray   { get { return false; } }
             public bool IsBoolean { get { return false; } }
@@ -4157,7 +4158,7 @@ namespace Cake.Slack.Include
     static partial class MetaData
     {
         public const string RootPath        = @"https://raw.github.com/";
-        public const string IncludeDate     = @"2015-09-15T16:30:30";
+        public const string IncludeDate     = @"2015-09-15T23:12:17";
 
         public const string Include_0       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs";
         public const string Include_1       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonData.cs";

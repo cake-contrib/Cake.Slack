@@ -7,6 +7,7 @@ namespace Cake.Slack
     /// <summary>
     /// Contains aliases related to SlackProvider API
     /// </summary>
+    [CakeAliasCategoryAttribute("Slack")]
     public static class SlackAliases
     {
         /// <summary>
@@ -16,7 +17,6 @@ namespace Cake.Slack
         /// <returns>A <see cref="SlackProvider"/> instance.</returns>
         [CakePropertyAlias(Cache = true)]
         [CakeNamespaceImportAttribute("Cake.Slack.Chat")]
-        [CakeAliasCategoryAttribute("Slack")]
         public static SlackProvider Slack(this ICakeContext context)
         {
             if (context == null)

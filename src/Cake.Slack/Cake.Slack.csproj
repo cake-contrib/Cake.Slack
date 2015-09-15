@@ -42,12 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cake.Common">
-      <HintPath>..\..\tools\Cake\Cake.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\Cake.Common.0.5.4\lib\net45\Cake.Common.dll</HintPath>
     </Reference>
     <Reference Include="Cake.Core">
-      <HintPath>..\..\tools\Cake\Cake.Core.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\packages\Cake.Core.0.5.4\lib\net45\Cake.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -83,13 +81,17 @@
     <None Include="slack.cake">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="T4\IncludeHeader.ttinclude" />
+    <None Include="T4\IncludeWebFile.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>powershell.exe -NoLogo -NonInteractive -ExecutionPolicy Unrestricted -NoProfile -Command  "cd $(SolutionDir)..\;.\build.ps1 -Script .\addinprep.cake"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
