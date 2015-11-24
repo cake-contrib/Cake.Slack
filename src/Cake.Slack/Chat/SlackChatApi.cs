@@ -77,7 +77,7 @@ namespace Cake.Slack.Chat
 
 
             context.Verbose(
-                "Posting to invoming webhook {0}...",
+                "Posting to incoming webhook {0}...",
                 string.Concat(
                     messageSettings
                         .IncomingWebHookUrl
@@ -141,7 +141,7 @@ namespace Cake.Slack.Chat
                 context.Verbose("Posting to {0}", apiUri);
 
                 context.Verbose(
-                    "Parematers: {0}",
+                    "Parameters: {0}",
                     apiParameters
                         .Keys
                         .Cast<string>()
