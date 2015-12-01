@@ -10,9 +10,9 @@ using System;
 [assembly: AssemblyDescription("Cake Slack AddIn")]
 [assembly: AssemblyCompany("WCOM AB")]
 [assembly: AssemblyProduct("Cake.Slack")]
-[assembly: AssemblyVersion("0.1.1")]
-[assembly: AssemblyFileVersion("0.1.1")]
-[assembly: AssemblyInformationalVersion("0.1.1")]
+[assembly: AssemblyVersion("0.1.2")]
+[assembly: AssemblyFileVersion("0.1.2")]
+[assembly: AssemblyInformationalVersion("0.1.2")]
 [assembly: AssemblyCopyright("Copyright © WCOM AB 2015")]
 [assembly: CLSCompliant(true)]
 

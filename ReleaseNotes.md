@@ -1,3 +1,5 @@
+### New in 0.1.2 (Released 2015/12/01)
+* Fixed typos in logging messages
 ### New in 0.1.1 (Released 2015/09/15)
 * Internalized some classes and fixed categories for documentation
 ### New in 0.1.0 (Released 2015/09/15)
