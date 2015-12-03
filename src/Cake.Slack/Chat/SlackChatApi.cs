@@ -71,6 +71,11 @@ namespace Cake.Slack.Chat
                 throw new ArgumentNullException(nameof(messageSettings), "Invalid slack message specified");
             }
 
+            if(messageAttachment == null)
+            {
+                throw new ArgumentNullException(nameof(messageAttachment), "Invalid slack messsage attachment");
+            }
+
             SlackChatMessageResult result;
             if (!string.IsNullOrWhiteSpace(messageSettings.IncomingWebHookUrl))
             {
@@ -120,7 +125,7 @@ namespace Cake.Slack.Chat
 
             if (messageAttachment == null)
             {
-                throw new NullReferenceException("Invalid attachment supplied.");
+                throw new ArgumentNullException(nameof(messageAttachment), "Invalid attachment supplied");
             }
 
             context.Verbose(
@@ -142,8 +147,7 @@ namespace Cake.Slack.Chat
                     text,
                     username = messageSettings.UserName ?? "CakeBuild",
                     attachments = messageAttachment,
-                    icon_url =
-                        messageSettings.IconUrl?.AbsoluteUri ?? "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
+                    icon_url = messageSettings.IconUrl?.AbsoluteUri ?? "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
                 });
 
             context.Debug("Parameter: {0}", postJson);
@@ -209,8 +213,7 @@ namespace Cake.Slack.Chat
                     channel,
                     text,
                     username = messageSettings.UserName ?? "CakeBuild",
-                    icon_url =
-                        messageSettings.IconUrl?.AbsoluteUri ?? "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
+                    icon_url = messageSettings.IconUrl?.AbsoluteUri ?? "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
                 });
 
             context.Debug("Parameter: {0}", postJson);
