@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat\SlackChatMessageAttachment.cs" />
     <Compile Include="Chat\SlackChatProvider.cs" />
     <Compile Include="Chat\SlackChatApi.cs" />
     <Compile Include="Chat\SlackChatMessageSettings.cs" />
