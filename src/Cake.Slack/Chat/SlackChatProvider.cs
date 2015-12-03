@@ -33,7 +33,6 @@ namespace Cake.Slack.Chat
                 );
         }
 
-
         /// <summary>
         /// Post message to Slack Channel
         /// </summary>
@@ -56,6 +55,43 @@ namespace Cake.Slack.Chat
             return _context.PostMessage(
                 channel,
                 text,
+                messageSettings
+                );
+        }
+
+        /// <summary>
+        /// Post message to Slack Channel
+        /// </summary>
+        /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
+        /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
+        /// <param name="messageAttachments">Lets you send a message attachment see https://api.slack.com/docs/attachments</param>
+        /// <param name="messageSettings">Lets you override default settings like UserName, IconUrl or if it should ThrowOnFail</param>
+        /// <returns>
+        /// Returns success/error/timestamp <see cref="SlackChatMessageResult" />
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">messageSettings</exception>
+        [CakeAliasCategory("Chat")]
+        public SlackChatMessageResult PostMessage(
+            string channel,
+            string text,
+            SlackChatMessageAttachment[] messageAttachments,
+            SlackChatMessageSettings messageSettings
+            )
+        {
+            if (messageSettings == null)
+            {
+                throw new ArgumentNullException("messageSettings");
+            }
+
+            if(messageAttachments == null)
+            {
+                throw new ArgumentNullException("messageAttachments");
+            }
+
+            return _context.PostMessage(
+                channel,
+                text,
+                messageAttachments,
                 messageSettings
                 );
         }
