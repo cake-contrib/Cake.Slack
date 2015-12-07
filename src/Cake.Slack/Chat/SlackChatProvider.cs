@@ -6,19 +6,19 @@ using Cake.Core.Annotations;
 namespace Cake.Slack.Chat
 {
     /// <summary>
-    /// Contains SlackProvider Chat functionality.
+    /// Contains <see href="https://api.slack.com/">Slack API</see> Chat functionality.
     /// </summary>
     [CakeAliasCategory("Slack")]
     public sealed class SlackChatProvider
     {
         private readonly ICakeContext _context;
-        
+
         /// <summary>
         /// Post message to Slack Channel
         /// </summary>
         /// <param name="token">SlackProvider auth token</param>
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
-        /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
+        /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
         [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
@@ -38,7 +38,7 @@ namespace Cake.Slack.Chat
         /// Post message to Slack Channel
         /// </summary>
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
-        /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
+        /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
         /// <param name="messageSettings">Lets you override default settings like UserName, IconUrl or if it should ThrowOnFail</param>
         [CakeAliasCategory("Chat")]
@@ -65,8 +65,8 @@ namespace Cake.Slack.Chat
         /// </summary>
         /// <param name="token">SlackProvider auth token</param>
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
-        /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
-        /// <param name="messageAttachments">Lets you send a message attachment see https://api.slack.com/docs/attachments</param>
+        /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
+        /// <param name="messageAttachments">Lets you send a message attachment see <see href="https://api.slack.com/docs/attachments">Attachments | Slack</see></param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
         [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
@@ -88,8 +88,8 @@ namespace Cake.Slack.Chat
         /// Post message to Slack Channel
         /// </summary>
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
-        /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
-        /// <param name="messageAttachments">Lets you send a message attachment see https://api.slack.com/docs/attachments</param>
+        /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
+        /// <param name="messageAttachments">Lets you send a message attachment see <see href="https://api.slack.com/docs/attachments">Attachments | Slack</see></param>
         /// <param name="messageSettings">Lets you override default settings like UserName, IconUrl or if it should ThrowOnFail</param>
         /// <returns>
         /// Returns success/error/timestamp <see cref="SlackChatMessageResult" />
