@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cake.Core;
 using Cake.Core.Annotations;
 
@@ -62,6 +63,30 @@ namespace Cake.Slack.Chat
         /// <summary>
         /// Post message to Slack Channel
         /// </summary>
+        /// <param name="token">SlackProvider auth token</param>
+        /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
+        /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
+        /// <param name="messageAttachments">Lets you send a message attachment see https://api.slack.com/docs/attachments</param>
+        /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
+        [CakeAliasCategory("Chat")]
+        public SlackChatMessageResult PostMessage(
+            string token,
+            string channel,
+            string text,
+            ICollection<SlackChatMessageAttachment> messageAttachments
+            )
+        {
+            return _context.PostMessage(
+                channel,
+                text,
+                messageAttachments,
+                new SlackChatMessageSettings { Token = token }
+                );
+        }
+
+        /// <summary>
+        /// Post message to Slack Channel
+        /// </summary>
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
         /// <param name="text">Text of the message to send. For message formatting see https://api.slack.com/docs/formatting</param>
         /// <param name="messageAttachments">Lets you send a message attachment see https://api.slack.com/docs/attachments</param>
@@ -74,7 +99,7 @@ namespace Cake.Slack.Chat
         public SlackChatMessageResult PostMessage(
             string channel,
             string text,
-            SlackChatMessageAttachment[] messageAttachments,
+            ICollection<SlackChatMessageAttachment> messageAttachments,
             SlackChatMessageSettings messageSettings
             )
         {
