@@ -59,3 +59,43 @@ Message succcessfully sent
 ``` 
 This will result in an message in your Slack channel similar to below:
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
+
+### Using message attachments
+```csharp
+#addin "Cake.Slack"
+var slackWebHookUrl = EnvironmentVariable("slackWebHookUrl");
+var slackChannel = "#cake";
+var slackAssemblyFieldAttachment = new SlackChatMessageAttachmentField[]
+{
+            new SlackChatMessageAttachmentField
+            {
+                Title =  "Message Attachment Title",
+            	Value =  "Message Attachment Value"
+            }
+};
+var postMessageResult = Slack.Chat.PostMessage(
+	channel:slackChannel,
+	text:"Starting Cake Build...",
+	messageAttachments:new SlackChatMessageAttachment[] 
+	{
+	            new SlackChatMessageAttachment 
+	            { 
+	                        Text = "Cake Text", 
+	                        Pretext = "Cake Pretext", 
+	                        Color = "#67A0E1", 
+	                        Fields = slackAssemblyFieldAttachment 
+	            }
+     },
+	messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackWebHookUrl });
+	
+if (postMessageResult.Ok)
+{
+    Information("Message succcessfully sent");
+}
+else
+{
+    Error("Failed to send message: {0}", postMessageResult.Error);
+}
+```
+This will result in a message in your Slack channel similar to below:
+![Sample message attachment](https://raw.githubusercontent.com/RLittlesII/Cake.Slack/master/samplemessageattachment.png)
