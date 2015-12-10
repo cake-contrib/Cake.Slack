@@ -31,6 +31,7 @@ Cake output will be similar to below:
 Message 1420896696.000057 successfully sent
 ```
 This will result in an message in your Slack channel similar to below:
+
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
 
 ### Using incoming web hook url
@@ -58,6 +59,7 @@ Cake output will be similar to below:
 Message successfully sent
 ```
 This will result in an message in your Slack channel similar to below:
+
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
 
 ### Using message attachments
@@ -98,4 +100,5 @@ else
 }
 ```
 This will result in a message in your Slack channel similar to below:
+
 ![Sample message attachment](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessageattachment.png)
