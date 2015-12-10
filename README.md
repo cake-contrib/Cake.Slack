@@ -19,7 +19,7 @@ var postMessageResult = Slack.Chat.PostMessage(
 
 if (postMessageResult.Ok)
 {
-    Information("Message {0} succcessfully sent", postMessageResult.TimeStamp);
+    Information("Message {0} successfully sent", postMessageResult.TimeStamp);
 }
 else
 {
@@ -28,8 +28,8 @@ else
 ```
 Cake output will be similar to below:
 ```
-Message 1420896696.000057 succcessfully sent
-``` 
+Message 1420896696.000057 successfully sent
+```
 This will result in an message in your Slack channel similar to below:
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
 
@@ -46,7 +46,7 @@ var postMessageResult = Slack.Chat.PostMessage(
 
 if (postMessageResult.Ok)
 {
-    Information("Message succcessfully sent");
+    Information("Message successfully sent");
 }
 else
 {
@@ -55,8 +55,8 @@ else
 ```
 Cake output will be similar to below:
 ```
-Message succcessfully sent
-``` 
+Message successfully sent
+```
 This will result in an message in your Slack channel similar to below:
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
 
@@ -76,21 +76,21 @@ var slackAssemblyFieldAttachment = new SlackChatMessageAttachmentField[]
 var postMessageResult = Slack.Chat.PostMessage(
 	channel:slackChannel,
 	text:"Starting Cake Build...",
-	messageAttachments:new SlackChatMessageAttachment[] 
+	messageAttachments:new SlackChatMessageAttachment[]
 	{
-	            new SlackChatMessageAttachment 
-	            { 
-	                        Text = "Cake Text", 
-	                        Pretext = "Cake Pretext", 
-	                        Color = "#67A0E1", 
-	                        Fields = slackAssemblyFieldAttachment 
+	            new SlackChatMessageAttachment
+	            {
+	                        Text = "Cake Text",
+	                        Pretext = "Cake Pretext",
+	                        Color = "#67A0E1",
+	                        Fields = slackAssemblyFieldAttachment
 	            }
      },
 	messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackWebHookUrl });
-	
+
 if (postMessageResult.Ok)
 {
-    Information("Message succcessfully sent");
+    Information("Message successfully sent");
 }
 else
 {
@@ -98,4 +98,4 @@ else
 }
 ```
 This will result in a message in your Slack channel similar to below:
-![Sample message attachment](https://raw.githubusercontent.com/RLittlesII/Cake.Slack/master/samplemessageattachment.png)
+![Sample message attachment](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessageattachment.png)
