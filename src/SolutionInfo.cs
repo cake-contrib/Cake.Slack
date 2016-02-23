@@ -13,6 +13,6 @@ using System;
 [assembly: AssemblyVersion("0.2.0")]
 [assembly: AssemblyFileVersion("0.2.0")]
 [assembly: AssemblyInformationalVersion("0.2.0")]
-[assembly: AssemblyCopyright("Copyright © WCOM AB 2015")]
+[assembly: AssemblyCopyright("Copyright © WCOM AB 2016")]
 [assembly: CLSCompliant(true)]
 
