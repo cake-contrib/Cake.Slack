@@ -1,3 +1,5 @@
+### New in 0.3.0 (Released 2016/04/18)
+* Updated to Cake 0.10.1
 ### New in 0.2.0 (Released 2015/12/07)
 * Added support for Slack message attachments
 ### New in 0.1.2 (Released 2015/12/01)
