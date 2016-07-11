@@ -68,7 +68,7 @@ if (!isLocalBuild)
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
 
-Setup(() =>
+Setup(context =>
 {
     // Executed BEFORE the first task.
     Information("Running tasks...");
@@ -91,7 +91,7 @@ Setup(() =>
     }
 });
 
-Teardown(() =>
+Teardown(context =>
 {
     // Executed AFTER the last task.
     Information("Finished running tasks.");

@@ -1,16 +1,17 @@
 ﻿using Cake.Core.Annotations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 namespace Cake.Slack.Chat
 {
     /// <summary>
     /// Class to allow for message attachments
     /// </summary>
     [CakeAliasCategory("Slack")]
+    // ReSharper disable once ClassNeverInstantiated.Global
     public sealed class SlackChatMessageAttachment
     {
         /// <summary>
@@ -18,7 +19,7 @@ namespace Cake.Slack.Chat
         /// </summary>
         public SlackChatMessageAttachment()
         {
-            this.Color = "#000000";
+            Color = "#000000";
         }
 
         /// <summary>

@@ -8,12 +8,12 @@ namespace Cake.Slack
     /// </summary>
     public sealed class SlackProvider
     {
-        private readonly SlackChatProvider _chat;
-
         /// <summary>
         /// The Slack Chat functionality.
         /// </summary>
-        public SlackChatProvider Chat { get { return _chat; } }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        // ReSharper disable once MemberCanBePrivate.Global
+        public SlackChatProvider Chat { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SlackProvider"/> class.
@@ -21,7 +21,7 @@ namespace Cake.Slack
         /// <param name="context">The context.</param>
         public SlackProvider(ICakeContext context)
         {
-            _chat = new SlackChatProvider(context);
+            Chat = new SlackChatProvider(context);
         }
     }
 }

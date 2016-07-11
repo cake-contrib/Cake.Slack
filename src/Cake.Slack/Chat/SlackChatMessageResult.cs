@@ -3,6 +3,9 @@ using Cake.Core.Annotations;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable ClassNeverInstantiated.Global
 namespace Cake.Slack.Chat
 {
     /// <summary>
@@ -11,42 +14,25 @@ namespace Cake.Slack.Chat
     [CakeAliasCategory("Slack")]
     public sealed class SlackChatMessageResult
     {
-        private readonly bool _ok;
-        private readonly string _channel;
-        private readonly string _timeStamp;
-        private readonly string _error;
-
         /// <summary>
         /// Indicating success or failure, <see cref="Error"/> for info on failure 
         /// </summary>
-        public bool Ok
-        {
-            get { return _ok; }
-        }
+        public bool Ok { get; }
 
         /// <summary>
         /// Encoded channel ID
         /// </summary>
-        public string Channel
-        {
-            get { return _channel; }
-        }
+        public string Channel { get; }
 
         /// <summary>
         /// Timestamp of the message
         /// </summary>
-        public string TimeStamp
-        {
-            get { return _timeStamp; }
-        }
+        public string TimeStamp { get; }
 
         /// <summary>
         /// Error message on failure
         /// </summary>
-        public string Error
-        {
-            get { return _error; }
-        }
+        public string Error { get; }
 
         /// <summary>
         /// 
@@ -57,10 +43,10 @@ namespace Cake.Slack.Chat
         /// <param name="error">Error message on failure</param>
         public SlackChatMessageResult(bool ok, string channel, string timeStamp, string error)
         {
-            _ok = ok;
-            _channel = channel;
-            _timeStamp = timeStamp;
-            _error = error;
+            Ok = ok;
+            Channel = channel;
+            TimeStamp = timeStamp;
+            Error = error;
         }
 
         /// <summary>

@@ -8,6 +8,7 @@ namespace Cake.Slack
     /// Contains aliases related to Slack API
     /// </summary>
     [CakeAliasCategory("Slack")]
+    // ReSharper disable once UnusedMember.Global
     public static class SlackAliases
     {
         /// <summary>
@@ -17,11 +18,12 @@ namespace Cake.Slack
         /// <returns>A <see cref="SlackProvider"/> instance.</returns>
         [CakePropertyAlias(Cache = true)]
         [CakeNamespaceImportAttribute("Cake.Slack.Chat")]
+        // ReSharper disable once UnusedMember.Global
         public static SlackProvider Slack(this ICakeContext context)
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
             }
             return new SlackProvider(context);
         }

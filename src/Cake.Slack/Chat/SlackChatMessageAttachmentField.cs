@@ -1,5 +1,10 @@
 ﻿using Cake.Core.Annotations;
 
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable ClassNeverInstantiated.Global
 namespace Cake.Slack.Chat
 {
     /// <summary>

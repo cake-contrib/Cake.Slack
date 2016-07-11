@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace Cake.Slack.Chat
     internal static class SlackChatApi
     {
         private static readonly SlackChatMessageAttachment[] EmptySlackChatMessageAttachments = new SlackChatMessageAttachment[0];
-        const string PostMessageUri = "https://slack.com/api/chat.postMessage";
+        private const string PostMessageUri = "https://slack.com/api/chat.postMessage";
 
         internal static SlackChatMessageResult PostMessage(
             this ICakeContext context,
@@ -25,7 +24,7 @@ namespace Cake.Slack.Chat
         {
             if (messageSettings == null)
             {
-                throw new ArgumentNullException("messageSettings", "Invalid slack message specified");
+                throw new ArgumentNullException(nameof(messageSettings), "Invalid slack message specified");
             }
 
             SlackChatMessageResult result;
@@ -74,12 +73,12 @@ namespace Cake.Slack.Chat
         {
             if (messageSettings == null)
             {
-                throw new ArgumentNullException("messageSettings", "Invalid slack message specified");
+                throw new ArgumentNullException(nameof(messageSettings), "Invalid slack message specified");
             }
 
             if(messageAttachments == null)
             {
-                throw new ArgumentNullException("messageAttachments", "Invalid slack messsage attachment");
+                throw new ArgumentNullException(nameof(messageAttachments), "Invalid slack messsage attachment");
             }
 
             SlackChatMessageResult result;
@@ -122,7 +121,7 @@ namespace Cake.Slack.Chat
         {
             if (messageSettings == null)
             {
-                throw new ArgumentNullException("messageSettings", "Invalid slack message specified");
+                throw new ArgumentNullException(nameof(messageSettings), "Invalid slack message specified");
             }
 
             if (string.IsNullOrWhiteSpace(messageSettings.IncomingWebHookUrl))
@@ -132,7 +131,7 @@ namespace Cake.Slack.Chat
 
             if (messageAttachments == null)
             {
-                throw new ArgumentNullException("messageAttachments", "Invalid attachment supplied");
+                throw new ArgumentNullException(nameof(messageAttachments), "Invalid attachment supplied");
             }
 
             context.Verbose(
@@ -154,10 +153,7 @@ namespace Cake.Slack.Chat
                     text,
                     username = messageSettings.UserName ?? "CakeBuild",
                     attachments = messageAttachments,
-                    icon_url =
-                        messageSettings.IconUrl != null
-                            ? messageSettings.IconUrl.AbsoluteUri
-                            : "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
+                    icon_url = messageSettings.IconUrl?.AbsoluteUri ?? "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
                 });
 
             context.Debug("Parameter: {0}", postJson);
@@ -255,27 +251,27 @@ namespace Cake.Slack.Chat
         {
             if (messageSettings == null)
             {
-                throw new ArgumentNullException("messageSettings", "Invalid slack message settings specified");
+                throw new ArgumentNullException(nameof(messageSettings), "Invalid slack message settings specified");
             }
 
             if (messageAttachments == null)
             {
-                throw new ArgumentNullException("messageAttachments", "Invalid slack message attachments specified");
+                throw new ArgumentNullException(nameof(messageAttachments), "Invalid slack message attachments specified");
             }
 
             if (string.IsNullOrWhiteSpace(token))
             {
-                throw new ArgumentNullException("token", "Invalid Message Token specified");
+                throw new ArgumentNullException(nameof(token), "Invalid Message Token specified");
             }
 
             if (string.IsNullOrWhiteSpace(channel))
             {
-                throw new ArgumentNullException("channel", "Invalid Message Channel specified");
+                throw new ArgumentNullException(nameof(channel), "Invalid Message Channel specified");
             }
 
             if (string.IsNullOrWhiteSpace(text))
             {
-                throw new ArgumentNullException("text", "Invalid Message Text specified");
+                throw new ArgumentNullException(nameof(text), "Invalid Message Text specified");
             }
 
             var messageParams = new NameValueCollection
@@ -287,9 +283,7 @@ namespace Cake.Slack.Chat
                 {"username", messageSettings.UserName ?? "CakeBuild"},
                 {
                     "icon_url",
-                    messageSettings.IconUrl != null
-                        ? messageSettings.IconUrl.AbsoluteUri
-                        : "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
+                    messageSettings.IconUrl?.AbsoluteUri ?? "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
                 }
             };
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cake.Core;
 using Cake.Core.Annotations;
 
+// ReSharper disable UnusedMember.Global
 namespace Cake.Slack.Chat
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Cake.Slack.Chat
         {
             if (messageSettings == null)
             {
-                throw new ArgumentNullException("messageSettings");
+                throw new ArgumentNullException(nameof(messageSettings));
             }
 
             return _context.PostMessage(
@@ -105,12 +106,12 @@ namespace Cake.Slack.Chat
         {
             if (messageSettings == null)
             {
-                throw new ArgumentNullException("messageSettings");
+                throw new ArgumentNullException(nameof(messageSettings));
             }
 
             if(messageAttachments == null)
             {
-                throw new ArgumentNullException("messageAttachments");
+                throw new ArgumentNullException(nameof(messageAttachments));
             }
 
             return _context.PostMessage(
