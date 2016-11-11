@@ -117,5 +117,13 @@ namespace Cake.Slack.Chat
         /// The fields.
         /// </value>
         public IList<SlackChatMessageAttachmentField> Fields { get; set; }
+
+        /// <summary>
+        /// Collection of fields that use Slack's Markdown-like message formatting. Valid values are "pretext", "text", and "fields".
+        /// </summary>
+        /// <value>
+        /// Which fields use Slack's Markdown-like message formatting.
+        /// </value>
+        public IList<string> Mrkdwn_In { get; set; }
     }
 }
