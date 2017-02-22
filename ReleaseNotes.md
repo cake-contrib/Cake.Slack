@@ -1,3 +1,7 @@
+### New in 0.6.0 (Released 2017/02/22)
+
+* Updated to Cake 0.17.0
+
 ### New in 0.5.0 (Released 2016/11/11)
 
 * Added markdown property
