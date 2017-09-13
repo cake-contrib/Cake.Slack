@@ -1,5 +1,4 @@
-﻿#addin "Cake.Slack"
-///////////////////////////////////////////////////////////////////////////////
+﻿///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -9,7 +8,6 @@ var configuration   = Argument<string>("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
-var slackHookUri        = EnvironmentVariable("slackhookuri");
 var slackChannel        = "#cake";
 var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
@@ -81,14 +79,6 @@ Setup(context =>
                             );
 
     Information(buildStartMessage);
-    if(!string.IsNullOrEmpty(slackHookUri))
-    {
-        Slack.Chat.PostMessage(
-                channel:slackChannel,
-                text:buildStartMessage,
-                messageSettings:new SlackChatMessageSettings { IncomingWebHookUrl = slackHookUri }
-            );
-    }
 });
 
 Teardown(context =>

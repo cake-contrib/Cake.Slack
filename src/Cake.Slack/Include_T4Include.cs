@@ -1,4 +1,7 @@
 //Disable documentation warning for external code
+
+using System.Globalization;
+
 #pragma warning disable 1591
 #pragma warning disable 1587
 #pragma warning disable 3019
@@ -2258,16 +2261,16 @@ namespace Cake.Slack
             {
                 // See section A.2. of the manual for details
                 IDictionary<int, IDictionary<int, int[]>> parse_table = new Dictionary<int, IDictionary<int, int[]>> ();
-        
+    
                 TableAddRow (parse_table, ParserToken.Array);
                 TableAddCol (parse_table, ParserToken.Array, '[',
                                 '[',
                                 (int) ParserToken.ArrayPrime);
-        
+    
                 TableAddRow (parse_table, ParserToken.ArrayPrime);
                 TableAddCol (parse_table, ParserToken.ArrayPrime, '"',
                                 (int) ParserToken.Value,
-        
+    
                                 (int) ParserToken.ValueRest,
                                 ']');
                 TableAddCol (parse_table, ParserToken.ArrayPrime, '[',
@@ -2296,12 +2299,12 @@ namespace Cake.Slack
                                 (int) ParserToken.Value,
                                 (int) ParserToken.ValueRest,
                                 ']');
-        
+    
                 TableAddRow (parse_table, ParserToken.Object);
                 TableAddCol (parse_table, ParserToken.Object, '{',
                                 '{',
                                 (int) ParserToken.ObjectPrime);
-        
+    
                 TableAddRow (parse_table, ParserToken.ObjectPrime);
                 TableAddCol (parse_table, ParserToken.ObjectPrime, '"',
                                 (int) ParserToken.Pair,
@@ -2309,13 +2312,13 @@ namespace Cake.Slack
                                 '}');
                 TableAddCol (parse_table, ParserToken.ObjectPrime, '}',
                                 '}');
-        
+    
                 TableAddRow (parse_table, ParserToken.Pair);
                 TableAddCol (parse_table, ParserToken.Pair, '"',
                                 (int) ParserToken.String,
                                 ':',
                                 (int) ParserToken.Value);
-        
+    
                 TableAddRow (parse_table, ParserToken.PairRest);
                 TableAddCol (parse_table, ParserToken.PairRest, ',',
                                 ',',
@@ -2323,19 +2326,19 @@ namespace Cake.Slack
                                 (int) ParserToken.PairRest);
                 TableAddCol (parse_table, ParserToken.PairRest, '}',
                                 (int) ParserToken.Epsilon);
-        
+    
                 TableAddRow (parse_table, ParserToken.String);
                 TableAddCol (parse_table, ParserToken.String, '"',
                                 '"',
                                 (int) ParserToken.CharSeq,
                                 '"');
-        
+    
                 TableAddRow (parse_table, ParserToken.Text);
                 TableAddCol (parse_table, ParserToken.Text, '[',
                                 (int) ParserToken.Array);
                 TableAddCol (parse_table, ParserToken.Text, '{',
                                 (int) ParserToken.Object);
-        
+    
                 TableAddRow (parse_table, ParserToken.Value);
                 TableAddCol (parse_table, ParserToken.Value, '"',
                                 (int) ParserToken.String);
@@ -2351,7 +2354,7 @@ namespace Cake.Slack
                                 (int) ParserToken.False);
                 TableAddCol (parse_table, ParserToken.Value, (int) ParserToken.Null,
                                 (int) ParserToken.Null);
-        
+    
                 TableAddRow (parse_table, ParserToken.ValueRest);
                 TableAddCol (parse_table, ParserToken.ValueRest, ',',
                                 ',',
@@ -2359,7 +2362,7 @@ namespace Cake.Slack
                                 (int) ParserToken.ValueRest);
                 TableAddCol (parse_table, ParserToken.ValueRest, ']',
                                 (int) ParserToken.Epsilon);
-        
+    
                 return parse_table;
             }
     
@@ -2384,7 +2387,7 @@ namespace Cake.Slack
                     number.IndexOf ('E') != -1) {
     
                     double n_double;
-                    if (Double.TryParse (number, out n_double)) {
+                    if (double.TryParse (number, NumberStyles.Any, CultureInfo.InvariantCulture, out n_double)) {
                         token = JsonToken.Double;
                         token_value = n_double;
     
@@ -2393,7 +2396,7 @@ namespace Cake.Slack
                 }
     
                 int n_int32;
-                if (Int32.TryParse (number, out n_int32)) {
+                if (int.TryParse (number, NumberStyles.Integer, CultureInfo.InvariantCulture, out n_int32)) {
                     token = JsonToken.Int;
                     token_value = n_int32;
     
@@ -2401,7 +2404,7 @@ namespace Cake.Slack
                 }
     
                 long n_int64;
-                if (Int64.TryParse (number, out n_int64)) {
+                if (long.TryParse (number, NumberStyles.Integer, CultureInfo.InvariantCulture, out n_int64)) {
                     token = JsonToken.Long;
                     token_value = n_int64;
     
@@ -2409,7 +2412,7 @@ namespace Cake.Slack
                 }
     
                 ulong n_uint64;
-                if (UInt64.TryParse(number, out n_uint64))
+                if (ulong.TryParse(number, NumberStyles.Integer, CultureInfo.InvariantCulture, out n_uint64))
                 {
                     token = JsonToken.Long;
                     token_value = n_uint64;
@@ -4168,7 +4171,7 @@ namespace Cake.Slack.Include
     static partial class MetaData
     {
         public const string RootPath        = @"https://raw.github.com/";
-        public const string IncludeDate     = @"2015-12-02T15:13:45";
+        public const string IncludeDate     = @"2017-09-13T16:30:06";
 
         public const string Include_0       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs";
         public const string Include_1       = @"https://raw.github.com/WCOMAB/litjson/master/src/LitJson/JsonData.cs";
