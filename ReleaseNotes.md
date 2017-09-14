@@ -1,3 +1,8 @@
+### New in 0.7.0 (Released 2017/09/14)
+
+* Updated to .Net 4.6
+* Updated to Cake 0.22.0
+
 ### New in 0.6.0 (Released 2017/02/22)
 
 * Updated to Cake 0.17.0

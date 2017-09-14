@@ -12,6 +12,7 @@
 <#@ import      namespace   = "System.Text.RegularExpressions"  #>
 <#@ import      namespace   = "System.Collections.Generic"      #>
 <#@ import      namespace   = "System.Linq"                     #>
+<#@ import      namespace   = "System.Globalization"            #>
 
 <#
     // ----------------------------------------------------------------------------------------------
