@@ -10,15 +10,15 @@
     Includes    = new []
         {
             // Lit JSON
-            Include (@"WCOMAB/litjson/master/src/LitJson/IJsonWrapper.cs",      internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/JsonData.cs",          internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/JsonException.cs",     internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/JsonMapper.cs",        internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/JsonReader.cs",        internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/JsonWriter.cs",        internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/JsonMockWrapper.cs",   internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/Lexer.cs",             internalize: true),
-            Include (@"WCOMAB/litjson/master/src/LitJson/ParserToken.cs",       internalize: true)
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/IJsonWrapper.cs",      internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/JsonData.cs",          internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/JsonException.cs",     internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/JsonMapper.cs",        internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/JsonReader.cs",        internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/JsonWriter.cs",        internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/JsonMockWrapper.cs",   internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/Lexer.cs",             internalize: true),
+            Include (@"cake-contrib/Cake.MicrosoftTeams/master/src/Cake.MicrosoftTeams/LitJson/ParserToken.cs",       internalize: true)
         };
 #>
 <#@ include file="T4\IncludeWebFile.ttinclude" #>

@@ -1,4 +1,5 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+
 // ReSharper disable CheckNamespace
 // ReSharper disable UnusedMember.Global
 namespace Cake.Slack
@@ -11,6 +12,7 @@ namespace Cake.Slack
     {
     }
 }
+
 namespace Cake.Slack.Chat
 {
     /// <summary>
