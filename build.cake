@@ -49,9 +49,9 @@ var nuGetPackSettings   = new NuGetPackSettings {
                                 Symbols                 = false,
                                 NoPackageAnalysis       = true,
                                 Files                   = new [] {
-                                                                    new NuSpecContent {Source = "Cake.Slack.dll"},
-                                                                    new NuSpecContent {Source = "Cake.Slack.pdb"},
-                                                                    new NuSpecContent {Source = "Cake.Slack.xml"}
+                                                                    new NuSpecContent {Source = "Cake.Slack.dll", Target = "lib\\net46"},
+                                                                    new NuSpecContent {Source = "Cake.Slack.pdb", Target = "lib\\net46"},
+                                                                    new NuSpecContent {Source = "Cake.Slack.xml", Target = "lib\\net46"}
                                                                  },
                                 BasePath                = binDir,
                                 OutputDirectory         = nugetRoot
