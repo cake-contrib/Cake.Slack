@@ -11,28 +11,23 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="T4\**" />
-    <EmbeddedResource Remove="T4\**" />
-    <None Remove="T4\**" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net46|AnyCPU'">
+    <DocumentationFile>bin\Debug\net46\Cake.Slack.xml</DocumentationFile>
+  </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Include_T4Include.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Include_T4Include.tt" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
+    <DocumentationFile>bin\Release\net46\Cake.Slack.xml</DocumentationFile>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Cake.Core" Version="0.22.2" />
     <PackageReference Include="Cake.Common" Version="0.22.2" />
+    <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
-    <PackageReference Include="System.Collections.NonGeneric" Version="4.0.1" />
-    <PackageReference Include="System.Collections.Specialized" Version="4.0.1" />
+    <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
+    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
