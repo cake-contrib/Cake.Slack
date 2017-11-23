@@ -1,3 +1,7 @@
+### New in 0.9.0 (Released 2017/11/23)
+
+* Changed to use Cake Contrib icon
+
 ### New in 0.8.0 (Released 2017/11/23)
 
 * Added framework moniker to nuget package
