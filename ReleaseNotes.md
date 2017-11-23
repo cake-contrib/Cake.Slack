@@ -1,3 +1,7 @@
+### New in 0.8.0 (Released 2017/11/23)
+
+* Added framework moniker to nuget package
+
 ### New in 0.7.0 (Released 2017/09/14)
 
 * Updated to .Net 4.6
