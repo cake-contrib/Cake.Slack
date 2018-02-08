@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Cake.Slack</id>
+    <version>0.0.0</version>
+    <authors>WCOM AB</authors>
+    <owners>WCOM AB, cake-contrib</owners>
+    <description>Provides Slack aliases (extension methods on Cake context) for Cake.</description>
+    <summary>Provides Slack aliases (extension methods on Cake context) for Cake.</summary>
+    <licenseUrl>https://github.com/cake-contrib/Cake.Slack/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/cake-contrib/Cake.Slack/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
+    <copyright>Copyright (c) WCOM AB</copyright>
+    <tags>Cake, Script, Build, Slack</tags>
+  </metadata>
+  <files>
+    <file src="net46\Cake.Slack.dll" target="lib/net46" />
+    <file src="net46\Cake.Slack.pdb" target="lib/net46" />
+    <file src="net46\Cake.Slack.xml" target="lib/net46" />
+    <file src="netstandard1.6\Cake.Slack.dll" target="lib/netstandard1.6" />
+    <file src="netstandard1.6\Cake.Slack.pdb" target="lib/netstandard1.6" />
+  </files>
+</package>

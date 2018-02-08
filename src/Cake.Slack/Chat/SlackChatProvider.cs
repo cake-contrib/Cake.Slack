@@ -28,11 +28,14 @@ namespace Cake.Slack.Chat
             string text
             )
         {
-            return _context.PostMessage(
+            var response = _context.PostMessage(
                 channel,
                 text,
-                new SlackChatMessageSettings {Token = token}
+                new SlackChatMessageSettings { Token = token }
                 );
+            response.Wait();
+
+            return response.Result;
         }
 
         /// <summary>
@@ -54,11 +57,14 @@ namespace Cake.Slack.Chat
                 throw new ArgumentNullException(nameof(messageSettings));
             }
 
-            return _context.PostMessage(
+            var response = _context.PostMessage(
                 channel,
                 text,
-                messageSettings
-                );
+                messageSettings);
+
+            response.Wait();
+
+            return response.Result;
         }
 
         /// <summary>
@@ -77,12 +83,16 @@ namespace Cake.Slack.Chat
             ICollection<SlackChatMessageAttachment> messageAttachments
             )
         {
-            return _context.PostMessage(
+            var response = _context.PostMessage(
                 channel,
                 text,
                 messageAttachments,
                 new SlackChatMessageSettings { Token = token }
                 );
+
+            response.Wait();
+
+            return response.Result;
         }
 
         /// <summary>
@@ -101,25 +111,27 @@ namespace Cake.Slack.Chat
             string channel,
             string text,
             ICollection<SlackChatMessageAttachment> messageAttachments,
-            SlackChatMessageSettings messageSettings
-            )
+            SlackChatMessageSettings messageSettings)
         {
             if (messageSettings == null)
             {
                 throw new ArgumentNullException(nameof(messageSettings));
             }
 
-            if(messageAttachments == null)
+            if (messageAttachments == null)
             {
                 throw new ArgumentNullException(nameof(messageAttachments));
             }
 
-            return _context.PostMessage(
-                channel,
-                text,
-                messageAttachments,
-                messageSettings
-                );
+            var response = _context.PostMessage(
+                            channel,
+                            text,
+                            messageAttachments,
+                            messageSettings
+                            );
+            response.Wait();
+
+            return response.Result;
         }
 
         /// <summary>
