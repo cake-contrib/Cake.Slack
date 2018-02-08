@@ -21,6 +21,26 @@ namespace Cake.Slack.Chat
         /// <param name="channel">Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.</param>
         /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
+        /// <example>
+        /// <code>
+        ///     Information("Sending message to Slack...");
+        /// 
+        ///     var postMessageResult = Slack.Chat.PostMessage(
+        ///         "token", 
+        ///         "Cake", 
+        ///         "It's not a party without Cake!"
+        ///         );
+        ///     
+        ///     if(postMessageResult.Ok)
+        ///     {
+        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///     }
+        ///     else
+        ///     {
+        ///         Error("Failed to send message: {0}.", postMessageResult.Error);
+        ///     }
+        /// </code>
+        /// </example>
         [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
             string token,
@@ -45,6 +65,27 @@ namespace Cake.Slack.Chat
         /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
         /// <param name="messageSettings">Lets you override default settings like UserName, IconUrl or if it should ThrowOnFail</param>
+        /// <example>
+        /// <code>
+        ///     Information("Sending message to Slack...");
+        ///     
+        ///     var settings = new SlackChatMessageSettings { Token = "token" };
+        ///     var postMessageResult = Slack.Chat.PostMessage(
+        ///         "Cake", 
+        ///         "It's not a party without Cake!",
+        ///         settings
+        ///         );
+        ///     
+        ///     if(postMessageResult.Ok)
+        ///     {
+        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///     }
+        ///     else
+        ///     {
+        ///         Error("Failed to send message: {0}.", postMessageResult.Error);
+        ///     }
+        /// </code>
+        /// </example>
         [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
             string channel,
@@ -75,6 +116,27 @@ namespace Cake.Slack.Chat
         /// <param name="text">Text of the message to send. For message formatting see <see href="https://api.slack.com/docs/formatting">Formatting | Slack</see></param>
         /// <param name="messageAttachments">Lets you send a message attachment see <see href="https://api.slack.com/docs/attachments">Attachments | Slack</see></param>
         /// <returns>Returns success/error/timestamp <see cref="SlackChatMessageResult"/></returns>
+        /// <example>
+        /// <code>
+        ///     Information("Sending message to Slack...");
+        ///     
+        ///     var postMessageResult = Slack.Chat.PostMessage(
+        ///         "token", 
+        ///         "Cake", 
+        ///         "It's not a party without Cake!",
+        ///         new new [] { new SlackChatMessageAttachment() }
+        ///         );
+        ///     
+        ///     if(postMessageResult.Ok)
+        ///     {
+        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///     }
+        ///     else
+        ///     {
+        ///         Error("Failed to send message: {0}.", postMessageResult.Error);
+        ///     }
+        /// </code>
+        /// </example>
         [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
             string token,
@@ -106,6 +168,28 @@ namespace Cake.Slack.Chat
         /// Returns success/error/timestamp <see cref="SlackChatMessageResult" />
         /// </returns>
         /// <exception cref="System.ArgumentNullException">messageSettings</exception>
+        /// <example>
+        /// <code>
+        ///     Information("Sending message to Slack...");
+        ///     
+        ///     var settings = new SlackChatMessageSettings { Token = "token" };
+        ///     var postMessageResult = Slack.Chat.PostMessage(
+        ///         "Cake", 
+        ///         "It's not a party without Cake!",
+        ///         new new [] { new SlackChatMessageAttachment() },
+        ///         settings
+        ///         );
+        ///     
+        ///     if(postMessageResult.Ok)
+        ///     {
+        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///     }
+        ///     else
+        ///     {
+        ///         Error("Failed to send message: {0}.", postMessageResult.Error);
+        ///     }
+        /// </code>
+        /// </example>
         [CakeAliasCategory("Chat")]
         public SlackChatMessageResult PostMessage(
             string channel,
