@@ -111,6 +111,22 @@ namespace Cake.Slack.Chat
         public string Thumb_Url { get; set; }
 
         /// <summary>
+        /// Footer text to display in message.
+        /// </summary>
+        /// <value>
+        /// The footer.
+        /// </value>
+        public string Footer { get; set; }
+
+        /// <summary>
+        /// Footer icon to display in message.
+        /// </summary>
+        /// <value>
+        /// The footer_icon.
+        /// </value>
+        public string Footer_Icon { get; set; }
+
+        /// <summary>
         /// Collection of <see cref="SlackChatMessageAttachmentField"/>
         /// </summary>
         /// <value>
