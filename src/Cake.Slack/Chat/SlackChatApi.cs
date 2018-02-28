@@ -151,8 +151,9 @@ namespace Cake.Slack.Chat
                     username = messageSettings.UserName ?? "CakeBuild",
                     attachments = messageAttachments,
                     icon_url =
-                    messageSettings.IconUrl?.AbsoluteUri ??
-                    "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
+                        messageSettings.IconUrl?.AbsoluteUri ??
+                        "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png",
+                    link_names = messageSettings.LinkNames.ToString().ToLower(),
                 });
 
             context.Debug("Parameter: {0}", json);
@@ -283,7 +284,8 @@ namespace Cake.Slack.Chat
                     "icon_url",
                     messageSettings.IconUrl?.AbsoluteUri ??
                     "https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-small.png"
-                }
+                },
+                {"link_names", messageSettings.LinkNames.ToString().ToLower()},
             };
 
             if (messageAttachments.Count > 0)
