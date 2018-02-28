@@ -36,6 +36,11 @@ namespace Cake.Slack.Chat
         public Uri IconUrl { get; set; }
 
         /// <summary>
+        /// Find and link channel names and usernames.
+        /// </summary>
+        public bool LinkNames { get; set; }
+
+        /// <summary>
         /// Optional flag for if should throw exception on failure
         /// </summary>
         public bool? ThrowOnFail { get; set; }
