@@ -15,10 +15,8 @@
     <tags>Cake, Script, Build, Slack</tags>
   </metadata>
   <files>
-    <file src="net46\Cake.Slack.dll" target="lib/net46" />
-    <file src="net46\Cake.Slack.pdb" target="lib/net46" />
-    <file src="net46\Cake.Slack.xml" target="lib/net46" />
-    <file src="netstandard2.0\Cake.Slack.dll" target="lib/netstandard2.0" />
-    <file src="netstandard2.0\Cake.Slack.pdb" target="lib/netstandard2.0" />
+    <file src="Cake.Slack.dll" target="lib/netstandard2.0" />
+    <file src="Cake.Slack.pdb" target="lib/netstandard2.0" />
+    <file src="Cake.Slack.xml" target="lib/netstandard2.0" />
   </files>
 </package>
