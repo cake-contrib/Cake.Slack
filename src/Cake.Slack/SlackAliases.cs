@@ -17,7 +17,7 @@ namespace Cake.Slack
         /// <param name="context">The context.</param>
         /// <returns>A <see cref="SlackProvider"/> instance.</returns>
         [CakePropertyAlias(Cache = true)]
-        [CakeNamespaceImportAttribute("Cake.Slack.Chat")]
+        [CakeNamespaceImport("Cake.Slack.Chat")]
         // ReSharper disable once UnusedMember.Global
         public static SlackProvider Slack(this ICakeContext context)
         {
