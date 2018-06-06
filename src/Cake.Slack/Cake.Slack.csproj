@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>Cake.Slack</AssemblyName>
     <PackageId>Cake.Slack</PackageId>
@@ -11,12 +11,12 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net46|AnyCPU'">
-    <DocumentationFile>bin\Debug\net46\Cake.Slack.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\Cake.Slack.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
-    <DocumentationFile>bin\Release\net46\Cake.Slack.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\Cake.Slack.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,12 +24,4 @@
     <PackageReference Include="Cake.Common" Version="0.28.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
 </Project>
