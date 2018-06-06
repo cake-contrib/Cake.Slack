@@ -186,3 +186,7 @@ FakesAssemblies/
 [Tt]ools/
 ![Tt]ools/packages.config
 [Bb]uild[Aa]rtifacts/
+
+# Visual Studio and VSCode
+.vs/
+.vscode/
