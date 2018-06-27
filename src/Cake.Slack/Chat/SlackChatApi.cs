@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Cake.Common.Diagnostics;
@@ -42,7 +43,6 @@ namespace Cake.Slack.Chat
             else
             {
                 var messageParams = GetMessageParams(
-                    messageSettings.Token,
                     channel,
                     text,
                     EmptySlackChatMessageAttachments,
@@ -51,6 +51,7 @@ namespace Cake.Slack.Chat
 
                 result = await context.PostToChatApi(
                     PostMessageUri,
+                    messageSettings.Token,
                     messageParams
                 );
             }
@@ -94,7 +95,6 @@ namespace Cake.Slack.Chat
             else
             {
                 var messageParams = GetMessageParams(
-                    messageSettings.Token,
                     channel,
                     text,
                     messageAttachments,
@@ -103,6 +103,7 @@ namespace Cake.Slack.Chat
 
                 result = await context.PostToChatApi(
                     PostMessageUri,
+                    messageSettings.Token,
                     messageParams
                 );
             }
@@ -183,6 +184,7 @@ namespace Cake.Slack.Chat
         private static async Task<SlackChatMessageResult> PostToChatApi(
             this ICakeContext context,
             string apiUri,
+            string token,
             Dictionary<string, string> apiParameters)
         {
             using (var client = new HttpClient()
@@ -204,12 +206,7 @@ namespace Cake.Slack.Chat
                                 sb.AppendFormat(
                                     "{0}={1}\r\n",
                                     key,
-                                    (StringComparer.CurrentCultureIgnoreCase.Equals(key, "token"))
-                                        ? "*redacted*"
-                                        : string.Join(
-                                            ",",
-                                            apiParameters[key] ?? string.Empty
-                                        )
+                                    string.Join(",", apiParameters[key] ?? string.Empty)
                                 );
                                 return sb;
                             },
@@ -220,6 +217,8 @@ namespace Cake.Slack.Chat
                 var json = ToJson(apiParameters);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 var httpResponse = await client.PostAsync(apiUri, content);
                 var response = await httpResponse.Content.ReadAsStringAsync();
@@ -242,7 +241,6 @@ namespace Cake.Slack.Chat
         }
 
         private static Dictionary<string, string> GetMessageParams(
-            string token,
             string channel,
             string text,
             ICollection<SlackChatMessageAttachment> messageAttachments,
@@ -259,11 +257,6 @@ namespace Cake.Slack.Chat
                     "Invalid slack message attachments specified");
             }
 
-            if (string.IsNullOrWhiteSpace(token))
-            {
-                throw new ArgumentNullException(nameof(token), "Invalid Message Token specified");
-            }
-
             if (string.IsNullOrWhiteSpace(channel))
             {
                 throw new ArgumentNullException(nameof(channel), "Invalid Message Channel specified");
@@ -276,7 +269,6 @@ namespace Cake.Slack.Chat
 
             var messageParams = new Dictionary<string, string>
             {
-                {"token", token},
                 {"channel", channel},
                 {"text", text},
                 {"username", messageSettings.UserName ?? "CakeBuild"},
