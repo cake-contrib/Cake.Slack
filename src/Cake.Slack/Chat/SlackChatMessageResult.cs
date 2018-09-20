@@ -15,7 +15,7 @@ namespace Cake.Slack.Chat
     public sealed class SlackChatMessageResult
     {
         /// <summary>
-        /// Indicating success or failure, <see cref="Error"/> for info on failure 
+        /// Indicating success or failure, <see cref="Error"/> for info on failure
         /// </summary>
         public bool Ok { get; }
 
@@ -35,7 +35,7 @@ namespace Cake.Slack.Chat
         public string Error { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="ok">Indicating success or failure</param>
         /// <param name="channel">Encoded channel ID</param>
@@ -50,7 +50,7 @@ namespace Cake.Slack.Chat
         }
 
         /// <summary>
-        /// Converst this instance of value to a string representation
+        /// Converts this instance of value to a string representation
         /// </summary>
         /// <returns></returns>
         public override string ToString()

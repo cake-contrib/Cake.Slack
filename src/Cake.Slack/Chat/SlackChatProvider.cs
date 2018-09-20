@@ -24,13 +24,13 @@ namespace Cake.Slack.Chat
         /// <example>
         /// <code>
         ///     Information("Sending message to Slack...");
-        /// 
+        ///
         ///     var postMessageResult = Slack.Chat.PostMessage(
-        ///         "token", 
-        ///         "Cake", 
+        ///         "token",
+        ///         "Cake",
         ///         "It's not a party without Cake!"
         ///         );
-        ///     
+        ///
         ///     if(postMessageResult.Ok)
         ///     {
         ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
@@ -68,17 +68,17 @@ namespace Cake.Slack.Chat
         /// <example>
         /// <code>
         ///     Information("Sending message to Slack...");
-        ///     
+        ///
         ///     var settings = new SlackChatMessageSettings { Token = "token" };
         ///     var postMessageResult = Slack.Chat.PostMessage(
-        ///         "Cake", 
+        ///         "Cake",
         ///         "It's not a party without Cake!",
         ///         settings
         ///         );
-        ///     
+        ///
         ///     if(postMessageResult.Ok)
         ///     {
-        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///         Information("Message {0} successfully sent.", postMessageResult.TimeStamp);
         ///     }
         ///     else
         ///     {
@@ -119,17 +119,17 @@ namespace Cake.Slack.Chat
         /// <example>
         /// <code>
         ///     Information("Sending message to Slack...");
-        ///     
+        ///
         ///     var postMessageResult = Slack.Chat.PostMessage(
-        ///         "token", 
-        ///         "Cake", 
+        ///         "token",
+        ///         "Cake",
         ///         "It's not a party without Cake!",
         ///         new new [] { new SlackChatMessageAttachment() }
         ///         );
-        ///     
+        ///
         ///     if(postMessageResult.Ok)
         ///     {
-        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///         Information("Message {0} successfully sent.", postMessageResult.TimeStamp);
         ///     }
         ///     else
         ///     {
@@ -171,18 +171,18 @@ namespace Cake.Slack.Chat
         /// <example>
         /// <code>
         ///     Information("Sending message to Slack...");
-        ///     
+        ///
         ///     var settings = new SlackChatMessageSettings { Token = "token" };
         ///     var postMessageResult = Slack.Chat.PostMessage(
-        ///         "Cake", 
+        ///         "Cake",
         ///         "It's not a party without Cake!",
         ///         new new [] { new SlackChatMessageAttachment() },
         ///         settings
         ///         );
-        ///     
+        ///
         ///     if(postMessageResult.Ok)
         ///     {
-        ///         Information("Message {0} succesfully sent.", postMessageResult.TimeStamp);
+        ///         Information("Message {0} successfully sent.", postMessageResult.TimeStamp);
         ///     }
         ///     else
         ///     {
