@@ -7,7 +7,7 @@
     <owners>WCOM AB, cake-contrib</owners>
     <description>Provides Slack aliases (extension methods on Cake context) for Cake.</description>
     <summary>Provides Slack aliases (extension methods on Cake context) for Cake.</summary>
-    <licenseUrl>https://github.com/cake-contrib/Cake.Slack/blob/master/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/cake-contrib/Cake.Slack/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
