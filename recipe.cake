@@ -10,7 +10,8 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "Cake.Slack",
                             appVeyorAccountName: "cakecontrib",
                             shouldRunDupFinder: false,
-                            shouldRunInspectCode: false);
+                            shouldRunInspectCode: false,
+                            shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);
 
