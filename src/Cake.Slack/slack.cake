@@ -9,8 +9,8 @@ try
                 token:slackToken,
                 channel:slackChannel,
                 text:"This _is_ a `message` from *CakeBuild* using token:thumbsup:\r\n```Here is some code```",
-                messageAttachments: new [] { 
-                        new SlackChatMessageAttachment { 
+                messageAttachments: new [] {
+                        new SlackChatMessageAttachment {
                             Fallback = "This is a test attachment: From Cake, using Cake.Slack",
                             Pretext = "This is a test attachment",
                             Title = "From Cake",
@@ -21,7 +21,7 @@ try
 
     if (postMessageResult.Ok)
     {
-        Information("Message {0} succcessfully sent", postMessageResult.TimeStamp);
+        Information("Message {0} successfully sent", postMessageResult.TimeStamp);
     }
     else
     {
@@ -38,8 +38,8 @@ try
     var postMessageResult = Slack.Chat.PostMessage(
                 channel:slackChannel,
                 text:"This _is_ a `message` from *CakeBuild* using incoming web hook:thumbsup:\r\n```Here is some code```",
-                messageAttachments: new [] { 
-                        new SlackChatMessageAttachment { 
+                messageAttachments: new [] {
+                        new SlackChatMessageAttachment {
                             Fallback = "This is a test attachment: From Cake, using Cake.Slack",
                             Pretext = "This is a test attachment",
                             Title = "From Cake",
@@ -51,7 +51,7 @@ try
 
     if (postMessageResult.Ok)
     {
-        Information("Message {0} succcessfully sent", postMessageResult.TimeStamp);
+        Information("Message {0} successfully sent", postMessageResult.TimeStamp);
     }
     else
     {

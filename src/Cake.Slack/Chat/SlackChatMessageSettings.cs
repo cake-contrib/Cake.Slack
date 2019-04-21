@@ -11,7 +11,6 @@ namespace Cake.Slack.Chat
     /// <summary>
     /// Class that lets you override default API settings
     /// </summary>
-    
     [CakeAliasCategory("Slack")]
     public sealed class SlackChatMessageSettings
     {
