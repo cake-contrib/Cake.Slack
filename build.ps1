@@ -50,6 +50,11 @@ Param(
     [string[]]$ScriptArgs
 )
 
+# This is an automatic variable in PowerShell Core, but not in Windows PowerShell 5.x
+if (-not (Test-Path variable:global:IsCoreCLR)) {
+    $IsCoreCLR = $false
+}
+
 # Attempt to set highest encryption available for SecurityProtocol.
 # PowerShell will not set this by default (until maybe .NET 4.6.x). This
 # will typically produce a message for PowerShell v2 (just an info
@@ -89,6 +94,11 @@ function MD5HashFile([string] $filePath)
         {
             $file.Dispose()
         }
+
+        if ($md5 -ne $null)
+        {
+            $md5.Dispose()
+        }
     }
 }
 
@@ -107,6 +117,9 @@ if(!$PSScriptRoot){
     $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 }
 
+if(!$Script){
+    $Script = Join-Path $PSScriptRoot "build.cake"
+}
 $TOOLS_DIR = Join-Path $PSScriptRoot "tools"
 $ADDINS_DIR = Join-Path $TOOLS_DIR "Addins"
 $MODULES_DIR = Join-Path $TOOLS_DIR "Modules"
@@ -117,6 +130,10 @@ $PACKAGES_CONFIG = Join-Path $TOOLS_DIR "packages.config"
 $PACKAGES_CONFIG_MD5 = Join-Path $TOOLS_DIR "packages.config.md5sum"
 $ADDINS_PACKAGES_CONFIG = Join-Path $ADDINS_DIR "packages.config"
 $MODULES_PACKAGES_CONFIG = Join-Path $MODULES_DIR "packages.config"
+
+$env:CAKE_PATHS_TOOLS = $TOOLS_DIR
+$env:CAKE_PATHS_ADDINS = $ADDINS_DIR
+$env:CAKE_PATHS_MODULES = $MODULES_DIR
 
 # Make sure tools folder exists
 if ((Test-Path $PSScriptRoot) -and !(Test-Path $TOOLS_DIR)) {
@@ -157,6 +174,12 @@ if (!(Test-Path $NUGET_EXE)) {
     }
 }
 
+# These are automatic variables in PowerShell Core, but not in Windows PowerShell 5.x
+if (-not (Test-Path variable:global:ismacos)) {
+    $IsLinux = $false
+    $IsMacOS = $false
+}
+
 # Save nuget.exe path to environment to be available to child processed
 $env:NUGET_EXE = $NUGET_EXE
 $env:NUGET_EXE_INVOCATION = if ($IsLinux -or $IsMacOS) {
@@ -176,7 +199,7 @@ if(-Not $SkipToolPackageRestore.IsPresent) {
     ($md5Hash -ne (Get-Content $PACKAGES_CONFIG_MD5 ))) {
         Write-Verbose -Message "Missing or changed package.config hash..."
         Get-ChildItem -Exclude packages.config,nuget.exe,Cake.Bakery |
-        Remove-Item -Recurse
+        Remove-Item -Recurse -Force
     }
 
     Write-Verbose -Message "Restoring tools from NuGet..."
@@ -240,17 +263,26 @@ $CAKE_EXE_INVOCATION = if ($IsLinux -or $IsMacOS) {
     "`"$CAKE_EXE`""
 }
 
-
-# Build Cake arguments
-$cakeArguments = @("$Script");
-if ($Target) { $cakeArguments += "-target=$Target" }
-if ($Configuration) { $cakeArguments += "-configuration=$Configuration" }
-if ($Verbosity) { $cakeArguments += "-verbosity=$Verbosity" }
-if ($ShowDescription) { $cakeArguments += "-showdescription" }
-if ($DryRun) { $cakeArguments += "-dryrun" }
+ # Build an array (not a string) of Cake arguments to be joined later
+$cakeArguments = @()
+if ($Script) { $cakeArguments += "`"$Script`"" }
+if ($Target) { $cakeArguments += "--target=`"$Target`"" }
+if ($Configuration) { $cakeArguments += "--configuration=$Configuration" }
+if ($Verbosity) { $cakeArguments += "--verbosity=$Verbosity" }
+if ($ShowDescription) { $cakeArguments += "--showdescription" }
+if ($DryRun) { $cakeArguments += "--dryrun" }
 $cakeArguments += $ScriptArgs
 
 # Start Cake
 Write-Host "Running build script..."
+Invoke-Expression "& $CAKE_EXE_INVOCATION '$Script' --bootstrap "
 Invoke-Expression "& $CAKE_EXE_INVOCATION $($cakeArguments -join " ")"
-exit $LASTEXITCODE
+$cakeExitCode = $LASTEXITCODE
+
+# Clean up environment variables that were created earlier in this bootstrapper
+$env:CAKE_PATHS_TOOLS = $null
+$env:CAKE_PATHS_ADDINS = $null
+$env:CAKE_PATHS_MODULES = $null
+
+# Return exit code
+exit $cakeExitCode
