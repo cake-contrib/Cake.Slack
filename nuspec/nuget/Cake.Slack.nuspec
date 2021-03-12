@@ -13,7 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
     <copyright>Copyright (c) WCOM AB</copyright>
-    <tags>Cake, Script, Build, Slack</tags>
+    <tags>Cake, Script, Build, Slack, cake-addin</tags>
   </metadata>
   <files>
     <file src="net46\Cake.Slack.dll" target="lib/net46" />
