@@ -1,12 +1,14 @@
 # Cake.Slack
+
 Cake AddIn that extends Cake with Slack messaging features
-[![Build status](https://ci.appveyor.com/api/projects/status/1tbi1x5b3i7wktv6?svg=true)](https://ci.appveyor.com/project/WCOMAB/cake-slack)
+[![Build status](https://ci.appveyor.com/api/projects/status/43v2xctpy6gh2tvj/branch/develop?svg=true)](https://ci.appveyor.com/project/cakecontrib/cake-slack/branch/develop)
 
 ## Usage
 
 ### Post message
 
 ### Using token
+
 ```csharp
 #addin "Cake.Slack"
 var slackToken = EnvironmentVariable("SLACK_TOKEN");
@@ -35,6 +37,7 @@ This will result in an message in your Slack channel similar to below:
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
 
 ### Using incoming web hook url
+
 ```csharp
 #addin "Cake.Slack"
 var slackhookuri = EnvironmentVariable("slackhookuri");
@@ -63,6 +66,7 @@ This will result in an message in your Slack channel similar to below:
 ![Sample message](https://github.com/WCOMAB/Cake.Slack/raw/master/samplemessage.png)
 
 ### Using message attachments
+
 ```csharp
 #addin "Cake.Slack"
 var slackWebHookUrl = EnvironmentVariable("slackWebHookUrl");
