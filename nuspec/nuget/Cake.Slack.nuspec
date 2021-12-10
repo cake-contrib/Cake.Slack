@@ -11,7 +11,7 @@
     <repository type="git" url="https://github.com/cake-contrib/Cake.Slack.git"/>
     <projectUrl>https://github.com/cake-contrib/Cake.Slack/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/addin/cake-contrib-addin-medium.png</iconUrl>
     <copyright>Copyright (c) WCOM AB</copyright>
     <tags>Cake, Script, Build, Slack, cake-addin</tags>
   </metadata>
