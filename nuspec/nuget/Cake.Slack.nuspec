@@ -11,7 +11,7 @@
     <repository type="git" url="https://github.com/cake-contrib/Cake.Slack.git"/>
     <projectUrl>https://github.com/cake-contrib/Cake.Slack/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/addin/cake-contrib-addin-medium.png</iconUrl>
     <copyright>Copyright (c) WCOM AB</copyright>
     <tags>Cake, Script, Build, Slack, cake-addin</tags>
   </metadata>
@@ -21,5 +21,15 @@
     <file src="net46\Cake.Slack.xml" target="lib/net46" />
     <file src="netstandard2.0\Cake.Slack.dll" target="lib/netstandard2.0" />
     <file src="netstandard2.0\Cake.Slack.pdb" target="lib/netstandard2.0" />
+    <file src="netstandard2.0\Cake.Slack.xml" target="lib/netstandard2.0" />
+    <file src="netcoreapp3.1\Cake.Slack.dll" target="lib/netcoreapp3.1" />
+    <file src="netcoreapp3.1\Cake.Slack.pdb" target="lib/netcoreapp3.1" />
+    <file src="netcoreapp3.1\Cake.Slack.xml" target="lib/netcoreapp3.1" />
+    <file src="net5.0\Cake.Slack.dll" target="lib/net5.0" />
+    <file src="net5.0\Cake.Slack.pdb" target="lib/net5.0" />
+    <file src="net5.0\Cake.Slack.xml" target="lib/net5.0" />
+    <file src="net6.0\Cake.Slack.dll" target="lib/net6.0" />
+    <file src="net6.0\Cake.Slack.pdb" target="lib/net6.0" />
+    <file src="net6.0\Cake.Slack.xml" target="lib/net6.0" />
   </files>
 </package>
