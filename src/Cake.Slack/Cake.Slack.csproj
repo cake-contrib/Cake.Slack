@@ -21,10 +21,12 @@
     <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
     <PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
     <Version>0.0.0</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="$(ProjectDir)../.editorconfig" Link=".editorconfig" />
+    <None Include="$(ProjectDir)../../README.md" Link="README.md" PackagePath="" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>
