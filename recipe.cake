@@ -11,7 +11,7 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "Cake.Slack",
                             appVeyorAccountName: "cakecontrib",
                             shouldRunInspectCode: false,
-                            shouldRunDotNetCorePack: true);
+                            shouldRunDotNetPack: true);
 
 BuildParameters.PrintParameters(Context);
 
