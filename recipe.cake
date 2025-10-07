@@ -1,5 +1,5 @@
 #tool dotnet:?package=DPI&version=2021.12.8.49
-#load nuget:?package=Cake.Recipe&version=2.2.1
+#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=4.1.0-alpha0036
 
 Environment.SetVariableNames();
 
@@ -10,18 +10,15 @@ BuildParameters.SetParameters(context: Context,
                             repositoryOwner: "cake-contrib",
                             repositoryName: "Cake.Slack",
                             appVeyorAccountName: "cakecontrib",
-                            shouldRunDupFinder: false,
-                            shouldRunInspectCode: false);
+                            shouldRunInspectCode: false,
+                            shouldRunDotNetPack: true);
 
 BuildParameters.PrintParameters(Context);
 
-ToolSettings.SetToolSettings(context: Context,
-                            dupFinderExcludePattern: new string[] {
-                                BuildParameters.RootDirectoryPath + "/src/Cake.Slack/**/*.AssemblyInfo.cs",
-                                BuildParameters.RootDirectoryPath + "/src/Cake.Slack/LitJson/**/*.cs" });
+ToolSettings.SetToolSettings(context: Context);
 
 Task("DPI")
-    .IsDependeeOf("DotNetCore-Build")
+    .IsDependeeOf("DotNet-Build")
     .Does<BuildVersion>(
         (context, buildVersion) => {
     var result = context.StartProcess(
@@ -50,4 +47,4 @@ Task("DPI")
     }
 });
 
-Build.RunDotNetCore();
+Build.RunDotNet();
