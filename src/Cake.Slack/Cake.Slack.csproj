@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AssemblyName>Cake.Slack</AssemblyName>
     <PackageId>Cake.Slack</PackageId>
@@ -40,9 +40,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Cake.Core" Version="4.0.0" PrivateAssets="All" />
-    <PackageReference Include="Cake.Common" Version="4.0.0" PrivateAssets="All" />
-    <PackageReference Include="CakeContrib.Guidelines" Version="1.5.1">
+    <PackageReference Include="Cake.Core" Version="5.0.0" PrivateAssets="All" />
+    <PackageReference Include="Cake.Common" Version="5.0.0" PrivateAssets="All" />
+    <PackageReference Include="CakeContrib.Guidelines" Version="1.6.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
