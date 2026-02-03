@@ -1,5 +1,5 @@
 #tool dotnet:?package=DPI&version=2021.12.8.49
-#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=4.1.0-alpha0036
+#load nuget:https://pkgs.dev.azure.com/cake-contrib/Home/_packaging/addins/nuget/v3/index.json?package=Cake.Recipe&version=4.1.0-alpha0042
 
 Environment.SetVariableNames();
 
